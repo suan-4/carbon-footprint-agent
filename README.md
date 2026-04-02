@@ -34,7 +34,10 @@
 
 ## 技术栈
 
-前端使用微信小程序原生开发，后端使用SpringBoot，数据库采用MySQL，接口文档使用Swagger。
+- 前端：微信小程序原生开发
+- 后端：Spring Boot
+- 数据库：MySQL
+- 接口文档：Swagger
 
 ## 项目结构
 
@@ -98,5 +101,3 @@
 ## 许可证
 
 MIT License
-# 项目技术栈
-前端使用Vue3，后端使用SpringBoot，数据库采用MySQL，接口文档使用Swagger
