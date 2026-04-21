@@ -1,20 +1,36 @@
 const fs = require('fs');
 const path = require('path');
 
-const KNOWLEDGE_DIR = path.resolve(__dirname, '../../..', 'knowledge');
+function getKnowledgeDirCandidates() {
+  return [
+    process.env.KNOWLEDGE_DIR,
+    path.resolve(process.cwd(), 'knowledge'),
+    path.resolve(__dirname, '../../knowledge'),
+    path.resolve(__dirname, '../../..', 'knowledge')
+  ]
+    .filter(Boolean)
+    .map((candidatePath) => path.resolve(candidatePath))
+    .filter((candidatePath, index, list) => list.indexOf(candidatePath) === index);
+}
+
+function resolveKnowledgeDir() {
+  return getKnowledgeDirCandidates().find((candidatePath) => fs.existsSync(candidatePath)) || null;
+}
 
 let cachedSignature = '';
 let cachedChunks = [];
 
 function getMarkdownFiles() {
-  if (!fs.existsSync(KNOWLEDGE_DIR)) {
+  const knowledgeDir = resolveKnowledgeDir();
+
+  if (!knowledgeDir) {
     return [];
   }
 
   return fs
-    .readdirSync(KNOWLEDGE_DIR)
+    .readdirSync(knowledgeDir)
     .filter((fileName) => fileName.endsWith('.md'))
-    .map((fileName) => path.join(KNOWLEDGE_DIR, fileName));
+    .map((fileName) => path.join(knowledgeDir, fileName));
 }
 
 function buildSignature(filePaths) {
@@ -239,5 +255,6 @@ function formatChunksForPrompt(chunks) {
 module.exports = {
   loadKnowledgeChunks,
   retrieveRelevantChunks,
-  formatChunksForPrompt
+  formatChunksForPrompt,
+  resolveKnowledgeDir
 };
