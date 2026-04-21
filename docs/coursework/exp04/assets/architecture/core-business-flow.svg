@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1500" height="860" viewBox="0 0 1500 860">
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  <style>
+    .title { font: 700 26px 'Microsoft YaHei', sans-serif; fill: #0f172a; }
+    .subtitle { font: 500 14px 'Microsoft YaHei', sans-serif; fill: #475569; }
+    .label { font: 600 16px 'Microsoft YaHei', sans-serif; fill: #0f172a; }
+    .small { font: 500 12px 'Microsoft YaHei', sans-serif; fill: #475569; }
+    .tiny { font: 500 11px 'Microsoft YaHei', sans-serif; fill: #64748b; }
+    .box { fill: white; stroke: #94a3b8; stroke-width: 2; rx: 18; ry: 18; }
+    .wire { fill: #ffffff; stroke: #64748b; stroke-width: 2; rx: 12; ry: 12; }
+    .accent { fill: #dbeafe; stroke: #60a5fa; stroke-width: 2; rx: 14; ry: 14; }
+    .accent2 { fill: #dcfce7; stroke: #34d399; stroke-width: 2; rx: 14; ry: 14; }
+    .accent3 { fill: #fef3c7; stroke: #f59e0b; stroke-width: 2; rx: 14; ry: 14; }
+    .accent4 { fill: #fee2e2; stroke: #f87171; stroke-width: 2; rx: 14; ry: 14; }
+    .line { stroke: #64748b; stroke-width: 2.4; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  
+  <text x="60" y="60" class="title">核心业务流程图：日志打卡 → 周报生成 → Agent 解读</text>
+  <text x="60" y="90" class="subtitle">展示行为记录、数据聚合和问答增强的端到端流程</text>
+  <rect x="70" y="180" width="180" height="70" class="box"/><text x="102" y="223" class="label">1. 首页进入日志页</text>
+  <rect x="300" y="180" width="180" height="70" class="box"/><text x="332" y="223" class="label">2. 选择行为卡片</text>
+  <rect x="530" y="180" width="220" height="70" class="box"/><text x="562" y="223" class="label">3. POST /api/behaviors</text>
+  <rect x="820" y="150" width="260" height="90" class="accent2"/><text x="850" y="190" class="label">4. appDataService 匹配行为目录</text><text x="850" y="218" class="small">计算积分与减碳值</text>
+  <rect x="1150" y="145" width="220" height="100" class="accent3"/><text x="1206" y="188" class="label">5. 判断数据源状态</text><text x="1195" y="216" class="small">MySQL 可用 / Mock 回退</text>
+  <rect x="1130" y="320" width="240" height="100" class="box"/><text x="1180" y="360" class="label">6A. MySQL 持久化</text><text x="1165" y="388" class="small">写行为、积分日志、账户余额</text>
+  <rect x="820" y="320" width="240" height="100" class="box"/><text x="875" y="360" class="label">6B. mockStore 回退</text><text x="860" y="388" class="small">返回演示数据，保证可联调</text>
+  <rect x="500" y="340" width="240" height="80" class="box"/><text x="548" y="385" class="label">7. 返回奖励结果</text>
+  <rect x="220" y="340" width="220" height="80" class="box"/><text x="250" y="385" class="label">8. 前端弹出奖励 Toast</text>
+  <rect x="60" y="520" width="220" height="80" class="box"/><text x="95" y="565" class="label">9. 进入碳报告页</text>
+  <rect x="340" y="520" width="260" height="80" class="box"/><text x="375" y="565" class="label">10. GET /reports/weekly-overview</text>
+  <rect x="660" y="500" width="260" height="120" class="accent2"/><text x="695" y="548" class="label">11. 聚合近 7 天行为记录</text><text x="695" y="576" class="small">统计总减碳、积分、次数与趋势</text>
+  <rect x="980" y="520" width="220" height="80" class="box"/><text x="1017" y="565" class="label">12. 周报可视化展示</text>
+  <rect x="1260" y="520" width="200" height="80" class="box"/><text x="1288" y="565" class="label">13. 点击 AI 解读</text>
+  <rect x="1080" y="700" width="200" height="80" class="box"/><text x="1115" y="745" class="label">14. POST /agent/chat</text>
+  <rect x="820" y="680" width="200" height="120" class="accent2"/><text x="850" y="725" class="label">15. 检索知识片段</text><text x="850" y="753" class="small">rules / faq / privacy 等</text>
+  <rect x="560" y="700" width="200" height="80" class="box"/><text x="585" y="745" class="label">16. 调用模型生成回答</text>
+  <rect x="280" y="700" width="220" height="80" class="box"/><text x="312" y="745" class="label">17. 展示答案与建议追问</text>
+  <path d="M250 215 L300 215" class="line"/>
+  <path d="M480 215 L530 215" class="line"/>
+  <path d="M750 215 L820 195" class="line"/>
+  <path d="M1080 195 L1150 195" class="line"/>
+  <path d="M1260 245 L1260 320" class="line"/>
+  <path d="M1150 195 L940 320" class="line"/>
+  <path d="M820 370 L740 380" class="line"/>
+  <path d="M1130 370 L740 380" class="line"/>
+  <path d="M500 380 L440 380" class="line"/>
+  <path d="M220 420 L170 520" class="line"/>
+  <path d="M280 560 L340 560" class="line"/>
+  <path d="M600 560 L660 560" class="line"/>
+  <path d="M920 560 L980 560" class="line"/>
+  <path d="M1200 560 L1260 560" class="line"/>
+  <path d="M1360 600 L1180 700" class="line"/>
+  <path d="M1080 740 L1020 740" class="line"/>
+  <path d="M820 740 L760 740" class="line"/>
+  <path d="M560 740 L500 740" class="line"/>
+        
+</svg>

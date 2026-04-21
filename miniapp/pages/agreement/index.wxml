@@ -1,0 +1,15 @@
+<view class="legal-page">
+  <view class="legal-header">
+    <view class="legal-title">用户协议</view>
+    <view class="legal-desc">本页提供当前阶段的服务协议模板，正式上线前请替换为法务确认版本。</view>
+  </view>
+
+  <block wx:for="{{sections}}" wx:key="title">
+    <view class="legal-card">
+      <view class="legal-card-title">{{item.title}}</view>
+      <block wx:for="{{item.items}}" wx:key="*this">
+        <view class="legal-item">{{index + 1}}. {{item}}</view>
+      </block>
+    </view>
+  </block>
+</view>

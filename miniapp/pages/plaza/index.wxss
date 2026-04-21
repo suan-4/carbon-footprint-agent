@@ -1,0 +1,496 @@
+.plaza-shell {
+  background:
+    radial-gradient(circle at top, rgba(74, 225, 131, 0.14), transparent 24%),
+    linear-gradient(180deg, #f7fbf8 0%, #eef4ff 100%);
+}
+
+.plaza-content {
+  padding-bottom: 220rpx;
+}
+
+.plaza-hero {
+  display: flex;
+  flex-direction: column;
+  gap: 22rpx;
+}
+
+.plaza-hero-badge {
+  display: inline-block;
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(46, 204, 113, 0.12);
+  color: #169352;
+  font-size: 18rpx;
+  font-weight: 800;
+  letter-spacing: 2rpx;
+}
+
+.plaza-hero-title {
+  margin-top: 18rpx;
+  font-size: 50rpx;
+  line-height: 1.14;
+  font-weight: 800;
+  color: #112430;
+}
+
+.plaza-anon-card {
+  display: flex;
+  align-items: center;
+  gap: 18rpx;
+  padding: 24rpx;
+  border-radius: 30rpx;
+}
+
+.plaza-anon-icon {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 24rpx;
+  background: rgba(46, 204, 113, 0.14);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.plaza-anon-icon-image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.plaza-anon-main {
+  flex: 1;
+}
+
+.plaza-anon-title {
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #122530;
+}
+
+.plaza-toggle {
+  width: 88rpx;
+  height: 48rpx;
+  border-radius: 999rpx;
+  background: rgba(187, 203, 187, 0.4);
+  position: relative;
+  flex-shrink: 0;
+}
+
+.plaza-toggle-on {
+  background: #7bf8a1;
+}
+
+.plaza-toggle-dot {
+  position: absolute;
+  top: 6rpx;
+  left: 6rpx;
+  width: 36rpx;
+  height: 36rpx;
+  border-radius: 50%;
+  background: #ffffff;
+  box-shadow: 0 6rpx 16rpx rgba(0, 0, 0, 0.1);
+}
+
+.plaza-toggle-dot-on {
+  left: 46rpx;
+}
+
+.plaza-match-card {
+  position: relative;
+  overflow: hidden;
+  margin-top: 22rpx;
+  background: linear-gradient(135deg, #10944f, #30c66f);
+  color: #ffffff;
+  box-shadow: 0 22rpx 46rpx rgba(46, 204, 113, 0.22);
+}
+
+.plaza-match-card::after {
+  content: '';
+  position: absolute;
+  top: -80rpx;
+  right: -70rpx;
+  width: 260rpx;
+  height: 260rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.plaza-match-mark {
+  position: absolute;
+  top: 28rpx;
+  right: 26rpx;
+  width: 160rpx;
+  height: 160rpx;
+  opacity: 0.12;
+}
+
+.plaza-match-mark-image {
+  width: 100%;
+  height: 100%;
+}
+
+.plaza-match-badge {
+  position: relative;
+  display: inline-block;
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 18rpx;
+  font-weight: 800;
+  letter-spacing: 2rpx;
+}
+
+.plaza-match-title {
+  position: relative;
+  margin-top: 22rpx;
+  max-width: 470rpx;
+  font-size: 40rpx;
+  line-height: 1.25;
+  font-weight: 800;
+}
+
+.plaza-match-desc {
+  position: relative;
+  margin-top: 16rpx;
+  max-width: 470rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.86);
+}
+
+.plaza-complete-button {
+  position: relative;
+  margin: 24rpx 0 0;
+  width: 220rpx;
+  height: 76rpx;
+  line-height: 76rpx;
+  border-radius: 999rpx;
+  background: #ffffff;
+  color: #139550;
+  font-size: 24rpx;
+  font-weight: 800;
+  box-shadow: 0 12rpx 24rpx rgba(0, 0, 0, 0.08);
+}
+
+.plaza-complete-button::after {
+  border: none;
+}
+
+.plaza-match-footer {
+  position: relative;
+  margin-top: 28rpx;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.plaza-avatar-stack {
+  display: flex;
+  align-items: center;
+}
+
+.plaza-avatar-chip {
+  width: 58rpx;
+  height: 58rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+  font-weight: 800;
+  border: 4rpx solid rgba(255, 255, 255, 0.26);
+}
+
+.plaza-avatar-chip + .plaza-avatar-chip {
+  margin-left: -14rpx;
+}
+
+.plaza-avatar-chip-solid {
+  background: rgba(255, 255, 255, 0.2);
+  color: #ffffff;
+}
+
+.plaza-avatar-chip-ghost {
+  background: #ffffff;
+  color: #12954f;
+}
+
+.plaza-match-status {
+  padding: 10rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.16);
+  font-size: 20rpx;
+  font-weight: 800;
+}
+
+.plaza-claim-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 45;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32rpx;
+  box-sizing: border-box;
+}
+
+.plaza-claim-toast {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  max-width: 560rpx;
+  border-radius: 34rpx;
+  background:
+    radial-gradient(circle at top right, rgba(130, 255, 173, 0.42), transparent 28%),
+    linear-gradient(135deg, rgba(15, 155, 81, 0.96), rgba(56, 207, 116, 0.94));
+  box-shadow: 0 26rpx 50rpx rgba(21, 117, 61, 0.28);
+  animation: plazaClaimIn 0.34s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.plaza-claim-glow {
+  position: absolute;
+  right: -34rpx;
+  top: -42rpx;
+  width: 200rpx;
+  height: 200rpx;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.18);
+  filter: blur(10rpx);
+}
+
+.plaza-claim-main {
+  position: relative;
+  padding: 38rpx 30rpx;
+  color: #ffffff;
+  text-align: center;
+}
+
+.plaza-claim-title {
+  font-size: 38rpx;
+  line-height: 1.2;
+  font-weight: 800;
+}
+
+.plaza-filter-row {
+  margin-top: 22rpx;
+  display: flex;
+  gap: 14rpx;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.plaza-filter-row::-webkit-scrollbar {
+  display: none;
+}
+
+.plaza-filter-pill {
+  padding: 14rpx 22rpx;
+  border-radius: 999rpx;
+  background: rgba(255, 255, 255, 0.68);
+  color: #738078;
+  font-size: 22rpx;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.plaza-filter-pill-active {
+  background: #22ab5d;
+  color: #ffffff;
+  box-shadow: 0 12rpx 22rpx rgba(46, 204, 113, 0.18);
+}
+
+.plaza-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.plaza-post-card {
+  border-radius: 30rpx;
+  padding: 24rpx;
+}
+
+.plaza-post-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.plaza-post-user {
+  display: flex;
+  gap: 16rpx;
+  flex: 1;
+  min-width: 0;
+}
+
+.plaza-post-icon {
+  width: 84rpx;
+  height: 84rpx;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.plaza-post-icon-green {
+  background: rgba(46, 204, 113, 0.12);
+}
+
+.plaza-post-icon-blue {
+  background: rgba(117, 203, 255, 0.18);
+}
+
+.plaza-post-icon-yellow {
+  background: rgba(255, 224, 132, 0.28);
+}
+
+.plaza-post-icon-image {
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.plaza-post-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.plaza-post-title {
+  font-size: 30rpx;
+  line-height: 1.35;
+  font-weight: 800;
+  color: #112530;
+}
+
+.plaza-post-meta {
+  margin-top: 8rpx;
+  font-size: 20rpx;
+  color: #7b8880;
+}
+
+.plaza-post-reward {
+  flex-shrink: 0;
+  color: #149552;
+  font-size: 30rpx;
+  font-weight: 800;
+}
+
+.plaza-post-desc {
+  margin-top: 18rpx;
+  font-size: 23rpx;
+  line-height: 1.7;
+  color: #6f7e75;
+}
+
+.plaza-post-tags {
+  margin-top: 18rpx;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+}
+
+.plaza-post-tag {
+  padding: 10rpx 16rpx;
+  border-radius: 999rpx;
+  background: rgba(9, 29, 46, 0.05);
+  color: #728078;
+  font-size: 18rpx;
+  font-weight: 700;
+}
+
+.plaza-post-bottom {
+  margin-top: 20rpx;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.plaza-post-button {
+  margin: 0;
+  min-width: 150rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  padding: 0 28rpx;
+  border-radius: 999rpx;
+  background: #22ab5d;
+  color: #ffffff;
+  font-size: 22rpx;
+  font-weight: 800;
+}
+
+.plaza-post-button::after {
+  border: none;
+}
+
+.plaza-rules {
+  border-radius: 34rpx;
+  overflow: hidden;
+}
+
+.plaza-rule-row {
+  display: flex;
+  gap: 18rpx;
+  padding: 28rpx 0;
+}
+
+.plaza-rule-row-divider {
+  border-bottom: 2rpx solid rgba(187, 203, 187, 0.14);
+}
+
+.plaza-rule-index {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 22rpx;
+  background: rgba(46, 204, 113, 0.12);
+  color: #159752;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20rpx;
+  font-weight: 800;
+  flex-shrink: 0;
+}
+
+.plaza-rule-copy {
+  flex: 1;
+}
+
+.plaza-rule-title {
+  font-size: 28rpx;
+  font-weight: 800;
+  color: #112530;
+}
+
+.plaza-rule-desc {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  line-height: 1.6;
+  color: #708077;
+}
+
+.plaza-fab {
+  bottom: 182rpx;
+}
+
+.plaza-footer {
+  margin-top: 40rpx;
+  padding-bottom: 16rpx;
+  text-align: center;
+  color: #98a49b;
+  font-size: 20rpx;
+}
+
+.plaza-footer-sub {
+  margin-top: 8rpx;
+}
+
+@keyframes plazaClaimIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-24rpx) scale(0.96);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}

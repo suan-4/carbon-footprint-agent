@@ -1,0 +1,44 @@
+<view class="settings-page">
+  <view class="settings-card">
+    <view class="settings-title">接口环境</view>
+    <view class="settings-desc">用于开发者工具、本地联调和后续真机切换正式域名。</view>
+
+    <view class="settings-current">
+      <view class="settings-label">当前环境</view>
+      <view class="settings-value">{{currentLabel}}</view>
+    </view>
+
+    <view class="settings-current">
+      <view class="settings-label">当前地址</view>
+      <view class="settings-url">{{currentBaseUrl}}</view>
+    </view>
+  </view>
+
+  <view class="settings-card">
+    <view class="settings-section-title">切换环境</view>
+    <block wx:for="{{envOptions}}" wx:key="key">
+      <view
+        class="settings-option {{item.key === currentEnvironment ? 'settings-option-active' : ''}}"
+        data-key="{{item.key}}"
+        bindtap="selectEnvironment"
+      >
+        <view class="settings-option-title">{{item.label}}</view>
+        <view class="settings-option-desc">{{item.key === 'local' ? item.baseUrl : '手动填写线上或局域网地址'}}</view>
+      </view>
+    </block>
+
+    <view wx:if="{{currentEnvironment === 'custom'}}" class="settings-input-block">
+      <view class="settings-label">自定义地址</view>
+      <input
+        class="settings-input"
+        type="text"
+        placeholder="例如 https://api.example.com/api"
+        value="{{baseUrlInput}}"
+        bindinput="handleBaseUrlInput"
+      />
+    </view>
+
+    <button class="settings-save" loading="{{saving}}" bindtap="saveSettings">保存设置</button>
+    <button class="settings-reset" bindtap="resetToLocal">恢复本地默认</button>
+  </view>
+</view>

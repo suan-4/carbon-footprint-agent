@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>行为记录 - 碳中和校园</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "secondary-fixed": "#7efba4",
+              "on-primary-fixed-variant": "#005228",
+              "surface-tint": "#006d37",
+              "background": "#f7f9ff",
+              "tertiary-fixed": "#ffe084",
+              "inverse-primary": "#4ae183",
+              "secondary-container": "#7bf8a1",
+              "tertiary-container": "#d7ae00",
+              "tertiary": "#735c00",
+              "primary-fixed-dim": "#4ae183",
+              "surface-container-lowest": "#ffffff",
+              "outline": "#6c7b6d",
+              "primary-fixed": "#6bfe9c",
+              "on-tertiary-container": "#544300",
+              "surface-container": "#e3efff",
+              "primary-container": "#2ecc71",
+              "secondary-fixed-dim": "#61de8a",
+              "surface-container-high": "#d9eaff",
+              "surface-dim": "#c9dcf3",
+              "surface-container-highest": "#d1e4fb",
+              "on-primary-container": "#005027",
+              "outline-variant": "#bbcbbb",
+              "on-secondary": "#ffffff",
+              "secondary": "#006d37",
+              "on-secondary-fixed": "#00210c",
+              "on-tertiary": "#ffffff",
+              "surface-variant": "#d1e4fb",
+              "on-surface-variant": "#3d4a3e",
+              "on-secondary-fixed-variant": "#005228",
+              "on-background": "#091d2e",
+              "inverse-surface": "#203243",
+              "on-primary-fixed": "#00210c",
+              "on-tertiary-fixed-variant": "#574500",
+              "surface": "#f7f9ff",
+              "on-surface": "#091d2e",
+              "error": "#ba1a1a",
+              "on-tertiary-fixed": "#231b00",
+              "primary": "#006d37",
+              "error-container": "#ffdad6",
+              "surface-bright": "#f7f9ff",
+              "on-primary": "#ffffff",
+              "inverse-on-surface": "#e8f2ff",
+              "tertiary-fixed-dim": "#eec209",
+              "on-error-container": "#93000a",
+              "on-error": "#ffffff",
+              "on-secondary-container": "#007239",
+              "surface-container-low": "#edf4ff"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans", "Source Han Sans SC", "sans-serif"],
+              "body": ["Inter", "Source Han Sans SC", "sans-serif"],
+              "label": ["Inter", "Source Han Sans SC", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+        body { font-family: 'Source Han Sans SC', sans-serif; }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .voice-pulse {
+            box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.4);
+            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 20px rgba(46, 204, 113, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(46, 204, 113, 0); }
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+    
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .agent-float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        .ai-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+        }
+        .agent-float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.1); }
+        }
+        .ai-glow {
+            animation: pulse-glow 2s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="bg-surface text-on-surface min-h-screen flex flex-col" data-mode="connect">
+<!-- TopAppBar Shell -->
+<header class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex items-center justify-between bg-slate-50/80 dark:bg-zinc-900/80 backdrop-blur-lg rounded-b-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[#2ECC71] text-2xl" data-icon="leafy_green" style="">energy_savings_leaf</span>
+<h1 class="font-headline text-[1.75rem] tracking-tighter font-bold text-[#2ECC71]" style="">碳中和校园</h1>
+</div>
+<div class="hidden md:block text-zinc-500 text-xs max-w-[200px] text-right leading-tight" style="">
+            演示数据由Faker模拟生成，真实使用需授权
+        </div>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-1 pt-28 pb-32 px-6 overflow-y-auto max-w-4xl mx-auto w-full">
+<!-- Hero Section: Voice Input -->
+<section class="flex flex-col items-center justify-center py-10 space-y-8">
+<div class="text-center space-y-2">
+<h2 class="text-2xl font-bold tracking-tight text-on-surface" style="">告诉你今天减碳行为给小碳吧</h2>
+<p class="text-sm text-zinc-500 font-medium" style="">例如：“今天在食堂使用了自带餐具”</p>
+</div>
+<!-- Central Pulse Button -->
+<div class="mb-4 flex flex-col items-center gap-2 agent-float-animation">
+<div class="relative">
+<!-- Outer Glow Layer -->
+<div class="absolute -inset-3 bg-primary/20 blur-lg rounded-full ai-glow"></div>
+<!-- Main Core -->
+<div class="relative w-12 h-12 bg-gradient-to-br from-secondary to-primary rounded-full flex items-center justify-center shadow-md border-2 border-white/40 overflow-hidden">
+<span class="material-symbols-outlined text-white text-xl z-10" style='font-variation-settings: "FILL" 1;'>smart_toy</span>
+</div>
+<!-- Name Badge -->
+<div class="absolute -right-1 -bottom-1 bg-white/90 backdrop-blur-md px-1.5 py-0.5 rounded-full border border-primary/20 shadow-sm">
+<span class="text-[8px] font-black text-primary tracking-tighter" style="">小碳 AI</span>
+</div>
+</div>
+</div><div class="relative flex items-center justify-center">
+<div class="absolute w-40 h-40 bg-primary-container/20 rounded-full voice-pulse"></div>
+<button class="relative w-32 h-32 bg-primary-container rounded-full flex items-center justify-center shadow-lg active:scale-95 transition-transform" style="">
+<span class="material-symbols-outlined text-white text-5xl" data-icon="mic" data-weight="fill" style='font-variation-settings: "FILL" 1;'>mic</span>
+</button>
+</div>
+<!-- Privacy Hint -->
+<div class="bg-surface-container-low px-4 py-2 rounded-full flex items-center gap-2">
+<span class="material-symbols-outlined text-zinc-400 text-sm" data-icon="security" style="">security</span>
+<span class="text-xs text-zinc-500" style="">隐私声明：语音仅在本地处理，不上传云端</span>
+</div>
+</section>
+<!-- Secondary Input Options -->
+<section class="mt-8 grid gap-4 flex-col">
+<div class="glass-card p-6 rounded-[24px] flex items-center gap-3 border border-white/50 shadow-sm active:scale-95 transition-all flex-row">
+<div class="w-12 h-12 bg-surface-container-highest rounded-2xl flex items-center justify-center">
+<span class="material-symbols-outlined text-primary" data-icon="edit_square">edit_square</span>
+</div>
+<div class="flex flex-col">
+<span class="text-sm font-semibold">小碳问答</span>
+<span class="text-xs text-zinc-400">输入文字与 AI 助手沟通减碳心得</span>
+</div>
+</div>
+</section>
+<!-- Quick Select Behaviors (Bento Style) -->
+<section class="mt-10 space-y-4">
+<div class="flex items-center justify-between px-2">
+<h3 class="text-lg font-bold" style="">快捷记录</h3>
+<span class="text-xs text-primary font-bold" style="">查看全部</span>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 gap-3">
+<!-- Eco-Transit -->
+<div class="bg-surface-container-lowest p-4 rounded-[24px] flex flex-col gap-4 border border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="directions_bus" style="">directions_bus</span>
+<span class="text-[10px] bg-secondary-container/30 text-secondary font-bold px-2 py-1 rounded-full" style="">+120g</span>
+</div>
+<div>
+<p class="font-bold text-sm" style="">绿色出行</p>
+<p class="text-[10px] text-zinc-400 leading-tight" style="">乘坐班车或骑行</p>
+</div>
+</div>
+<!-- No Straw -->
+<div class="bg-surface-container-lowest p-4 rounded-[24px] flex flex-col gap-4 border border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="no_drinks" style="">no_drinks</span>
+<span class="text-[10px] bg-secondary-container/30 text-secondary font-bold px-2 py-1 rounded-full" style="">+45g</span>
+</div>
+<div>
+<p class="font-bold text-sm" style="">无吸管</p>
+<p class="text-[10px] text-zinc-400 leading-tight" style="">减少一次性塑料</p>
+</div>
+</div>
+<!-- Own Cutlery -->
+<div class="bg-surface-container-lowest p-4 rounded-[24px] flex flex-col gap-4 border border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="restaurant" style="">restaurant</span>
+<span class="text-[10px] bg-secondary-container/30 text-secondary font-bold px-2 py-1 rounded-full" style="">+85g</span>
+</div>
+<div>
+<p class="font-bold text-sm" style="">自带餐具</p>
+<p class="text-[10px] text-zinc-400 leading-tight" style="">食堂零废弃挑战</p>
+</div>
+</div>
+<!-- Stair Walk -->
+<div class="bg-surface-container-lowest p-4 rounded-[24px] flex flex-col gap-4 border border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="stairs" style="">stairs</span>
+<span class="text-[10px] bg-secondary-container/30 text-secondary font-bold px-2 py-1 rounded-full" style="">+30g</span>
+</div>
+<div>
+<p class="font-bold text-sm" style="">步行上楼</p>
+<p class="text-[10px] text-zinc-400 leading-tight" style="">少坐电梯多运动</p>
+</div>
+</div>
+<!-- Clean Plate -->
+<div class="bg-surface-container-lowest p-4 rounded-[24px] flex flex-col gap-4 border border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="flatware" style="">flatware</span>
+<span class="text-[10px] bg-secondary-container/30 text-secondary font-bold px-2 py-1 rounded-full" style="">+150g</span>
+</div>
+<div>
+<p class="font-bold text-sm" style="">光盘行动</p>
+<p class="text-[10px] text-zinc-400 leading-tight" style="">杜绝校园食物浪费</p>
+</div>
+</div>
+<!-- Digital Note -->
+<div class="bg-surface-container-lowest p-4 rounded-[24px] flex flex-col gap-4 border border-transparent hover:border-primary/20 transition-all cursor-pointer">
+<div class="flex items-start justify-between">
+<span class="material-symbols-outlined text-primary text-3xl" data-icon="tablet_android" style="">tablet_android</span>
+<span class="text-[10px] bg-secondary-container/30 text-secondary font-bold px-2 py-1 rounded-full" style="">+200g</span>
+</div>
+<div>
+<p class="font-bold text-sm" style="">无纸笔记</p>
+<p class="text-[10px] text-zinc-400 leading-tight" style="">电子学习省纸张</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer Shell -->
+<footer class="max-w-2xl mx-auto px-8 flex flex-col items-center gap-2 w-full py-12">
+<p class="font-['Source_Han_Sans_SC'] text-[0.6875rem] leading-relaxed text-center text-zinc-400" style="">
+                © 2024 碳中和校园 initiative. 所有数据遵循 中国台湾地区 相关合规标准.
+            </p>
+<div class="flex gap-4">
+<a class="text-zinc-400 text-[0.6875rem] hover:text-zinc-600" href="#" style="">隐私政策</a>
+<a class="text-zinc-400 text-[0.6875rem] hover:text-zinc-600" href="#" style="">服务协议</a>
+<a class="text-zinc-400 text-[0.6875rem] hover:text-zinc-600" href="#" style="">关于我们</a>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar Shell -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-2xl rounded-t-[32px] shadow-[0_-4px_20px_rgba(0,0,0,0.04)]">
+<div class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-4 py-2 hover:text-[#2ECC71] transition-all Active: translate-y-[-2px] duration-300">
+<span class="material-symbols-outlined" data-icon="home" style="">home</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider" style="">首页</span>
+</div>
+<!-- Active Tab: Behavioral Logging maps to 日志 (Diary/Log) -->
+<div class="flex flex-col items-center justify-center bg-[#2ECC71]/10 text-[#2ECC71] rounded-2xl px-4 py-2 Active: translate-y-[-2px] duration-300">
+<span class="material-symbols-outlined" data-icon="edit_note" style='font-variation-settings: "FILL" 1;'>edit_note</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider font-bold" style="">日志</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-4 py-2 hover:text-[#2ECC71] transition-all Active: translate-y-[-2px] duration-300">
+<span class="material-symbols-outlined" data-icon="grid_view" style="">grid_view</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider" style="">广场</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-4 py-2 hover:text-[#2ECC71] transition-all Active: translate-y-[-2px] duration-300">
+<span class="material-symbols-outlined" data-icon="shopping_bag" style="">shopping_bag</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider" style="">商城</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-4 py-2 hover:text-[#2ECC71] transition-all Active: translate-y-[-2px] duration-300">
+<span class="material-symbols-outlined" data-icon="assessment" style="">assessment</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider" style="">报告</span>
+</div>
+<div class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-4 py-2 hover:text-[#2ECC71] transition-all Active: translate-y-[-2px] duration-300">
+<span class="material-symbols-outlined" data-icon="person" style="">person</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider" style="">我的</span>
+</div>
+</nav>
+</body></html>

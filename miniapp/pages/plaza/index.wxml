@@ -1,0 +1,155 @@
+<view class="app-shell plaza-shell">
+  <view class="shell-aura shell-aura-left"></view>
+  <view class="shell-aura shell-aura-right"></view>
+
+  <view class="shell-topbar">
+    <view class="shell-brand">
+      <view class="shell-brand-icon">
+        <image class="shell-brand-icon-image" src="/assets/icons/grid.svg" mode="aspectFit"></image>
+      </view>
+      <view class="shell-brand-title">广场</view>
+    </view>
+    <view class="shell-topbar-caption">校园互助与教材流转</view>
+  </view>
+
+  <view wx:if="{{claimToast.visible}}" class="plaza-claim-layer" catchtap="hideClaimToast">
+    <view class="plaza-claim-toast">
+      <view class="plaza-claim-glow"></view>
+      <view class="plaza-claim-main">
+        <view class="plaza-claim-title">认领成功</view>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="shell-scroll">
+    <view class="shell-content plaza-content">
+      <view class="plaza-hero">
+        <view class="plaza-hero-copy">
+          <view class="plaza-hero-badge">Campus Mutual Aid</view>
+          <view class="plaza-hero-title">让顺路与共享，真正发生</view>
+        </view>
+
+        <view class="plaza-anon-card glass-surface">
+          <view class="plaza-anon-icon">
+            <image class="plaza-anon-icon-image" src="/assets/icons/verified.svg" mode="aspectFit"></image>
+          </view>
+          <view class="plaza-anon-main">
+            <view class="plaza-anon-title">匿名展示已开启</view>
+          </view>
+          <view class="plaza-toggle {{anonymousMode ? 'plaza-toggle-on' : ''}}" bindtap="toggleAnonymousMode">
+            <view class="plaza-toggle-dot {{anonymousMode ? 'plaza-toggle-dot-on' : ''}}"></view>
+          </view>
+        </view>
+      </view>
+
+      <view class="plaza-match-card shell-card">
+        <view class="plaza-match-mark">
+          <image class="plaza-match-mark-image" src="/assets/icons/verified.svg" mode="aspectFit"></image>
+        </view>
+        <view class="plaza-match-badge">MATCH FOUND</view>
+        <view class="plaza-match-title">匹配成功，对接码 {{highlight.code}}</view>
+        <view class="plaza-match-desc">{{highlight.desc}}</view>
+
+        <button
+          wx:if="{{currentClaimPostId && highlight.status !== '已完成'}}"
+          class="plaza-complete-button"
+          loading="{{completing}}"
+          bindtap="completeClaim"
+        >
+          完成认领
+        </button>
+
+        <view class="plaza-match-footer">
+          <view class="plaza-avatar-stack">
+            <view class="plaza-avatar-chip plaza-avatar-chip-solid">你</view>
+            <view class="plaza-avatar-chip plaza-avatar-chip-ghost">匿</view>
+          </view>
+          <view class="plaza-match-status">{{highlight.status}}</view>
+        </view>
+      </view>
+
+      <view class="plaza-filter-row">
+        <block wx:for="{{filters}}" wx:key="key">
+          <view
+            class="plaza-filter-pill {{item.key === activeFilter ? 'plaza-filter-pill-active' : ''}}"
+            data-key="{{item.key}}"
+            bindtap="switchFilter"
+          >
+            {{item.label}}
+          </view>
+        </block>
+      </view>
+
+      <view class="mini-section-head">
+        <view class="mini-section-title">待认领需求</view>
+        <view class="mini-section-link">实时刷新</view>
+      </view>
+
+      <view class="plaza-feed">
+        <block wx:for="{{visiblePosts}}" wx:key="id">
+          <view class="plaza-post-card glass-surface">
+            <view class="plaza-post-top">
+              <view class="plaza-post-user">
+                <view class="plaza-post-icon {{item.iconClass}}">
+                  <image class="plaza-post-icon-image" src="{{item.icon}}" mode="aspectFit"></image>
+                </view>
+                <view class="plaza-post-copy">
+                  <view class="plaza-post-title">{{item.title}}</view>
+                  <view class="plaza-post-meta">{{item.meta}}</view>
+                </view>
+              </view>
+              <view class="plaza-post-reward">{{item.reward}}</view>
+            </view>
+
+            <view class="plaza-post-desc">{{item.desc}}</view>
+
+            <view class="plaza-post-tags">
+              <block wx:for="{{item.tags}}" wx:for-item="tag" wx:key="*this">
+                <view class="plaza-post-tag">{{tag}}</view>
+              </block>
+            </view>
+
+            <view class="plaza-post-bottom">
+              <button class="plaza-post-button" data-id="{{item.id}}" data-title="{{item.title}}" bindtap="claimPost">认领</button>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <view class="mini-section-head">
+        <view class="mini-section-title">广场规则</view>
+        <view class="mini-section-link">MVP 说明</view>
+      </view>
+
+      <view class="plaza-rules glass-surface shell-card">
+        <block wx:for="{{rules}}" wx:key="title">
+          <view class="plaza-rule-row {{index !== rules.length - 1 ? 'plaza-rule-row-divider' : ''}}">
+            <view class="plaza-rule-index">0{{index + 1}}</view>
+            <view class="plaza-rule-copy">
+              <view class="plaza-rule-title">{{item.title}}</view>
+              <view class="plaza-rule-desc">{{item.desc}}</view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <view class="plaza-footer">
+        <view>下一步接入发布、认领、匿名对接码和状态流转</view>
+        <view class="plaza-footer-sub">Mutual Aid Board</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <button class="shell-fab plaza-fab" bindtap="openVoiceAssistant">
+    <image class="shell-fab-image" src="/assets/icons/robot.svg" mode="aspectFit"></image>
+  </button>
+
+  <view class="shell-bottom-nav">
+    <block wx:for="{{tabs}}" wx:key="key">
+      <view class="shell-nav-item {{item.key === 'plaza' ? 'shell-nav-item-active' : ''}}" data-path="{{item.path}}" bindtap="goToPage">
+        <image class="shell-nav-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <view class="shell-nav-label">{{item.label}}</view>
+      </view>
+    </block>
+  </view>
+</view>

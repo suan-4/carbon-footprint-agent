@@ -1,0 +1,91 @@
+<view class="app-shell agent-shell">
+  <view class="shell-aura shell-aura-left"></view>
+  <view class="shell-aura shell-aura-right"></view>
+
+  <view class="shell-topbar">
+    <view class="agent-topbar-left">
+      <view class="agent-back-button" bindtap="goBack">
+        <image class="agent-back-icon" src="/assets/icons/chevron-right.svg" mode="aspectFit"></image>
+      </view>
+      <view class="shell-brand">
+        <view class="agent-brand-copy">
+          <view class="shell-brand-title">小碳问答</view>
+          <view class="agent-topbar-caption">校园低碳 Agent</view>
+        </view>
+        <view class="shell-brand-icon">
+          <image class="shell-brand-icon-image" src="/assets/icons/robot.svg" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view
+    scroll-y
+    class="shell-scroll agent-scroll"
+    scroll-with-animation
+    scroll-into-view="{{scrollIntoView}}"
+  >
+    <view class="shell-content agent-content">
+      <view class="agent-hero glass-surface shell-card">
+        <view class="agent-hero-badge">ALWAYS READY</view>
+        <view class="agent-hero-title">问积分、问规则、问上线准备，都可以直接问小碳</view>
+        <view class="agent-hero-desc">先用 mock 对话打通前后端，后面再接 RAG、规则库和真实模型。</view>
+      </view>
+
+      <block wx:for="{{messages}}" wx:key="id">
+        <view id="msg-{{item.id}}" class="chat-row {{item.role === 'user' ? 'chat-row-user' : 'chat-row-assistant'}}">
+          <block wx:if="{{item.role === 'assistant'}}">
+            <view class="chat-assistant-head">
+              <view class="chat-assistant-avatar">
+                <image class="chat-assistant-avatar-image" src="/assets/icons/robot.svg" mode="aspectFit"></image>
+              </view>
+              <text class="chat-assistant-name">小碳 AI</text>
+            </view>
+            <view class="chat-card chat-card-assistant {{item.loading ? 'chat-card-loading' : ''}}">
+              <view class="chat-text">{{item.text}}</view>
+              <view wx:if="{{item.loading}}" class="chat-loading-dots">
+                <view class="chat-loading-dot"></view>
+                <view class="chat-loading-dot"></view>
+                <view class="chat-loading-dot"></view>
+              </view>
+              <view wx:if="{{item.suggestions && item.suggestions.length}}" class="chat-suggestion-list">
+                <block wx:for="{{item.suggestions}}" wx:key="*this">
+                  <button class="chat-suggestion-chip" data-value="{{item}}" bindtap="tapSuggestion">{{item}}</button>
+                </block>
+              </view>
+            </view>
+          </block>
+
+          <block wx:else>
+            <view class="chat-card chat-card-user">
+              <view class="chat-text">{{item.text}}</view>
+            </view>
+          </block>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+
+  <view class="agent-composer-wrap">
+    <view class="agent-composer-row">
+      <view class="agent-composer-shell">
+        <view class="agent-composer-mic">
+          <image class="agent-composer-mic-icon" src="/assets/icons/mic.svg" mode="aspectFit"></image>
+        </view>
+        <input
+          class="agent-input"
+          value="{{inputValue}}"
+          type="text"
+          placeholder="向小碳提问..."
+          maxlength="200"
+          bindinput="onInputChange"
+          confirm-type="send"
+          bindconfirm="sendFromInput"
+        />
+      </view>
+      <view class="agent-send-button {{sending ? 'agent-send-button-disabled' : ''}}" bindtap="sendFromInput">
+        <image class="agent-send-icon" src="/assets/icons/send.svg" mode="aspectFit"></image>
+      </view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,131 @@
+<view class="home-page">
+  <view class="floating-aura floating-aura-one"></view>
+  <view class="floating-aura floating-aura-two"></view>
+
+  <view class="topbar">
+    <view class="brand">
+      <view class="brand-icon">
+        <image class="brand-icon-image" src="/assets/icons/leaf.svg" mode="aspectFit"></image>
+      </view>
+      <view class="brand-name">碳迹同行</view>
+    </view>
+    <view class="notify-button">
+      <image class="notify-icon-image" src="/assets/icons/bell.svg" mode="aspectFit"></image>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="home-scroll">
+    <view class="home-content">
+      <view class="hero-section">
+        <view class="ring-shell">
+          <view class="ring-track"></view>
+          <view class="ring-progress"></view>
+          <view class="ring-center">
+            <view class="ring-value-line">
+              <text class="ring-value">{{overview.points}}</text>
+              <text class="ring-unit">g</text>
+            </view>
+            <view class="ring-feedback">今日已达成 {{overview.completion}}%，离下一份绿色权益又近了一步。</view>
+            <view class="ring-trend">较昨日提升 +{{overview.trend}}%</view>
+          </view>
+        </view>
+
+        <view class="agent-block">
+          <view class="agent-core-wrap">
+            <view class="agent-core-glow"></view>
+            <view class="agent-core">
+              <image class="agent-core-image" src="/assets/icons/robot.svg" mode="aspectFit"></image>
+            </view>
+            <view class="agent-badge">小碳 AI</view>
+          </view>
+
+          <view class="agent-dialog">
+            <view class="agent-dialog-bar"></view>
+            <view class="agent-dialog-text">
+              同学，我检测到你今天又步行了 3 公里，真的很棒。要不要把这段绿色行为记录下来？
+            </view>
+            <view class="agent-actions">
+              <button class="agent-primary" bindtap="recordNow">马上记录</button>
+              <button class="agent-secondary" bindtap="askLater">稍后再说</button>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="quick-grid">
+        <view class="challenge-card">
+          <view class="challenge-badge">{{challenge.badge}}</view>
+          <view class="challenge-title">{{challenge.title}}</view>
+          <view class="challenge-desc">{{challenge.desc}}</view>
+          <button class="challenge-button" data-path="/pages/plaza/index" bindtap="goToPage">{{challenge.buttonText}}</button>
+          <image class="challenge-mark" src="/assets/icons/footprint.svg" mode="aspectFit"></image>
+        </view>
+
+        <block wx:for="{{quickActions}}" wx:key="title">
+          <view class="quick-card" data-path="/pages/log/index" bindtap="goToPage">
+            <view class="quick-icon">
+              <image class="quick-icon-image" src="{{item.icon}}" mode="aspectFit"></image>
+            </view>
+            <view class="quick-title">{{item.title}}</view>
+          </view>
+        </block>
+      </view>
+
+      <view class="section-head">
+        <view class="section-title">近期成就</view>
+        <view class="section-link">查看全部</view>
+      </view>
+      <block wx:for="{{achievements}}" wx:key="title">
+        <view class="achievement-card">
+          <view class="achievement-cover">
+            <image class="achievement-cover-image" src="{{item.cover}}" mode="aspectFit"></image>
+          </view>
+          <view class="achievement-main">
+            <view class="achievement-title">{{item.title}}</view>
+          </view>
+          <view class="achievement-side">
+            <view class="achievement-carbon">{{item.carbon}}</view>
+            <view class="achievement-time">{{item.time}}</view>
+          </view>
+        </view>
+      </block>
+
+      <view class="news-panel">
+        <view class="news-head">
+          <view class="news-live-dot"></view>
+          <view class="news-live-label">LIVE CAMPUS NEWS</view>
+        </view>
+        <view class="news-card">
+          <view class="news-quote">{{campusNews.quote}}</view>
+          <view class="news-author-row">
+            <view class="news-avatar">
+              <image class="news-avatar-image" src="/assets/icons/leaf.svg" mode="aspectFit"></image>
+            </view>
+            <view>
+              <view class="news-author">{{campusNews.author}}</view>
+              <view class="news-time">{{campusNews.time}}</view>
+            </view>
+          </view>
+        </view>
+      </view>
+
+      <view class="footer-note">
+        <view>© 2026 碳迹同行 Initiative</view>
+        <view class="footer-sub">Powered by Carbon-Neutral Campus AI</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <button class="voice-fab" bindtap="openVoiceAssistant">
+    <image class="voice-fab-image" src="/assets/icons/robot.svg" mode="aspectFit"></image>
+  </button>
+
+  <view class="bottom-nav">
+    <block wx:for="{{tabs}}" wx:key="key">
+      <view class="nav-item {{item.key === 'home' ? 'nav-item-active' : ''}}" data-path="{{item.path}}" bindtap="goToPage">
+        <image class="nav-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <view class="nav-label">{{item.label}}</view>
+      </view>
+    </block>
+  </view>
+</view>

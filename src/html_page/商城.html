@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>碳中和校园 - 积分商城</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        @font-face {
+            font-family: 'Source Han Sans SC';
+            src: url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap');
+        }
+        body {
+            font-family: 'Source Han Sans SC', 'Inter', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .text-editorial {
+            letter-spacing: -0.02em;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "secondary-fixed": "#7efba4",
+                        "on-primary-fixed-variant": "#005228",
+                        "surface-tint": "#006d37",
+                        "background": "#f7f9ff",
+                        "tertiary-fixed": "#ffe084",
+                        "inverse-primary": "#4ae183",
+                        "secondary-container": "#7bf8a1",
+                        "tertiary-container": "#d7ae00",
+                        "tertiary": "#735c00",
+                        "primary-fixed-dim": "#4ae183",
+                        "surface-container-lowest": "#ffffff",
+                        "outline": "#6c7b6d",
+                        "primary-fixed": "#6bfe9c",
+                        "on-tertiary-container": "#544300",
+                        "surface-container": "#e3efff",
+                        "primary-container": "#2ecc71",
+                        "secondary-fixed-dim": "#61de8a",
+                        "surface-container-high": "#d9eaff",
+                        "surface-dim": "#c9dcf3",
+                        "surface-container-highest": "#d1e4fb",
+                        "on-primary-container": "#005027",
+                        "outline-variant": "#bbcbbb",
+                        "on-secondary": "#ffffff",
+                        "secondary": "#006d37",
+                        "on-secondary-fixed": "#00210c",
+                        "on-tertiary": "#ffffff",
+                        "surface-variant": "#d1e4fb",
+                        "on-surface-variant": "#3d4a3e",
+                        "on-secondary-fixed-variant": "#005228",
+                        "on-background": "#091d2e",
+                        "inverse-surface": "#203243",
+                        "on-primary-fixed": "#00210c",
+                        "on-tertiary-fixed-variant": "#574500",
+                        "surface": "#f7f9ff",
+                        "on-surface": "#091d2e",
+                        "error": "#ba1a1a",
+                        "on-tertiary-fixed": "#231b00",
+                        "primary": "#006d37",
+                        "error-container": "#ffdad6",
+                        "surface-bright": "#f7f9ff",
+                        "on-primary": "#ffffff",
+                        "inverse-on-surface": "#e8f2ff",
+                        "tertiary-fixed-dim": "#eec209",
+                        "on-error-container": "#93000a",
+                        "on-error": "#ffffff",
+                        "on-secondary-container": "#007239",
+                        "surface-container-low": "#edf4ff"
+                    },
+                    fontFamily: {
+                        "headline": ["Plus Jakarta Sans"],
+                        "body": ["Inter"],
+                        "label": ["Inter"]
+                    },
+                    borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background text-on-background min-h-screen pb-32">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 px-6 py-4 flex items-center justify-between bg-slate-50/80 dark:bg-zinc-900/80 backdrop-blur-lg rounded-b-[24px] shadow-[0_8px_24px_rgba(0,0,0,0.06)]">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-[#2ECC71] text-2xl" data-icon="leafy_green">energy_savings_leaf</span>
+<h1 class="font-['Plus_Jakarta_Sans','Source_Han_Sans_SC'] text-[1.75rem] tracking-tighter font-bold text-[#2ECC71]">商城</h1>
+</div>
+<div class="flex items-center gap-2 px-4 py-2 bg-[#2ECC71]/10 rounded-full">
+<span class="material-symbols-outlined text-[#2ECC71] text-sm" style="font-variation-settings: 'FILL' 1;">database</span>
+<span class="text-[#2ECC71] font-bold font-headline text-lg">2,840</span>
+</div>
+</header>
+<main class="pt-24 px-6 max-w-5xl mx-auto space-y-8">
+<!-- Bento Hero Section: Featured Rewards -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- President's Lunch Card -->
+<div class="md:col-span-2 relative overflow-hidden rounded-[32px] bg-white shadow-sm flex flex-col group transition-all duration-300">
+<div class="absolute top-4 left-4 z-10">
+<span class="px-3 py-1 bg-[#2ECC71] text-white text-[10px] font-bold rounded-full uppercase tracking-widest">限量兑换</span>
+</div>
+<div class="h-64 overflow-hidden">
+<img alt="校长午餐" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" data-alt="close-up of a premium healthy organic lunch platter with fresh salad and artisanal bread in a bright sunlit university dining room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADfjNZS1JxJN6DXZOmV56uNusS5V7lzLr-CopbYWYy6MkT5UbuvJ-AiROU6Sx7jTrX9e-dFLXbuRLtrpdmCBki1J9K8omzl8fMSozx5cHdMf6vxTb8aO_kKME2zE-gp_F7DRbsK_Ogu_3jf5a-NTv_pbSlLCTk_visloCCpWIEX4UN-A-MjqRoLWQ4oBmeE54dmctRxf2Yjh5No0uKZih7etHNNcjY1NKuVdJMZ-0f0TD-KQxUYDkCPJRgaru3ZefKgxs8BjBS7GM"/>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between bg-surface-container-lowest">
+<div>
+<h3 class="text-xl font-bold mb-2">校长低碳午餐交流会</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed mb-4">与校领导共进绿色午餐，深度探讨校园可持续发展建议。包含校办签发的正式邀请函。</p>
+<div class="flex items-center gap-2 mb-4 p-3 bg-surface-container-low rounded-2xl">
+<span class="material-symbols-outlined text-tertiary" data-icon="verified">verified</span>
+<span class="text-xs text-on-surface-variant">由校务办公室官方签发支持文件</span>
+</div>
+</div>
+<div class="flex items-center justify-between mt-auto">
+<div class="text-[#2ECC71] font-bold text-2xl font-headline">5,000 <span class="text-xs font-normal text-on-surface-variant">积分</span></div>
+<button class="bg-[#2ECC71] text-white px-6 py-3 rounded-2xl font-bold text-sm hover:opacity-90 active:scale-95 transition-all">立即兑换</button>
+</div>
+</div>
+</div>
+<!-- Seed Paper Card -->
+<div class="rounded-[32px] bg-surface-container-highest/30 overflow-hidden flex flex-col">
+<div class="h-48 relative">
+<img alt="种子纸" class="w-full h-full object-cover" data-alt="hand-made recycled seed paper with embedded flower seeds on a rustic wooden surface with soft natural lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8VB28CGKAbbKIShLqUG0wRmwkhLGBkCn9mV5IS-w89__5obC-P9NlUQjEFh8YiE2UuX-sg2cXMaqLAEqvDYPrr2YAqtxnzTYpXVn58J_GrYk5WQvAd9qbHWe_WUdPajL6VNDJepiPj2CJyJpXRzYMFWuxFz-95RHG2XDURxmAt-UdvOxb8np8Rp7VLPvuEOTL_PdrSBkAXC7Ngn4wZdNARV61S8a4hATcaCNsMJrSIxstSlrVKsaDfZxnKJ-HAoqltYAX9BzCL08"/>
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+<span class="text-white text-xs font-medium">种子纸 - 记录绿意</span>
+</div>
+</div>
+<div class="p-6 flex-1 flex flex-col justify-between bg-white">
+<div>
+<h3 class="font-bold text-lg mb-1">手作再生种子纸</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">可降解循环纸张，书写后埋入土中即可绽放花朵。</p>
+</div>
+<div class="mt-6 flex items-center justify-between">
+<div class="text-[#2ECC71] font-bold text-xl font-headline">450 <span class="text-xs font-normal">积分</span></div>
+<span class="material-symbols-outlined text-on-surface-variant hover:text-[#2ECC71] cursor-pointer" data-icon="add_shopping_cart">add_shopping_cart</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Digital Medals Section -->
+<section class="space-y-6">
+<div class="flex items-center justify-between px-2">
+<h2 class="text-xl font-bold flex items-center gap-2">
+<span class="material-symbols-outlined text-[#2ECC71]" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+                    数字荣誉勋章
+                </h2>
+<a class="text-sm text-[#2ECC71] font-medium" href="#">查看全部</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Medal 1 -->
+<div class="p-6 rounded-[28px] bg-white border border-transparent hover:border-[#2ECC71]/20 transition-all flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-secondary-container flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-on-secondary-container text-3xl" data-icon="cycle">cycle</span>
+</div>
+<h4 class="font-bold text-sm mb-1">回收达人</h4>
+<p class="text-[10px] text-on-surface-variant mb-4">累计分类回收50次</p>
+<div class="text-[#2ECC71] font-bold text-sm font-headline">120 <span class="text-[10px] font-normal">积分</span></div>
+</div>
+<!-- Medal 2 -->
+<div class="p-6 rounded-[28px] bg-white border border-transparent hover:border-[#2ECC71]/20 transition-all flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-tertiary-container/20 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-tertiary text-3xl" data-icon="energy_savings_leaf">energy_savings_leaf</span>
+</div>
+<h4 class="font-bold text-sm mb-1">节能先锋</h4>
+<p class="text-[10px] text-on-surface-variant mb-4">宿舍节电量排名前5%</p>
+<div class="text-[#2ECC71] font-bold text-sm font-headline">200 <span class="text-[10px] font-normal">积分</span></div>
+</div>
+<!-- Medal 3 -->
+<div class="p-6 rounded-[28px] bg-white border border-transparent hover:border-[#2ECC71]/20 transition-all flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-[#2ECC71]/10 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-[#2ECC71] text-3xl" data-icon="directions_walk">directions_walk</span>
+</div>
+<h4 class="font-bold text-sm mb-1">步行先森</h4>
+<p class="text-[10px] text-on-surface-variant mb-4">单日步数超15000步</p>
+<div class="text-[#2ECC71] font-bold text-sm font-headline">80 <span class="text-[10px] font-normal">积分</span></div>
+</div>
+<!-- Medal 4 -->
+<div class="p-6 rounded-[28px] bg-white border border-transparent hover:border-[#2ECC71]/20 transition-all flex flex-col items-center text-center group">
+<div class="w-16 h-16 rounded-full bg-blue-100 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-blue-600 text-3xl" data-icon="water_drop">water_drop</span>
+</div>
+<h4 class="font-bold text-sm mb-1">护水卫士</h4>
+<p class="text-[10px] text-on-surface-variant mb-4">校园节水志愿服务认证</p>
+<div class="text-[#2ECC71] font-bold text-sm font-headline">150 <span class="text-[10px] font-normal">积分</span></div>
+</div>
+</div>
+</section>
+<!-- Other Rewards Grid -->
+<section class="space-y-6">
+<h2 class="text-xl font-bold px-2">生活好物</h2>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<!-- Product Card 1 -->
+<div class="bg-white rounded-[24px] overflow-hidden flex flex-col shadow-sm">
+<img alt="环保杯" class="h-32 w-full object-cover" data-alt="minimalist reusable bamboo coffee cup on a clean white background with a small green leaf beside it" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBN7GWaLKzaPBJx3vR10rMLoF0TX-qGWKrKbbzwdUXAWJjwDo53t1Ojhw6c6zE20tmSQUwCG7shAZjpyezq11Thpzem9Hc1QVEkfjKE2erqVItxK9Mf-zrYHF60MgYuoq08gbMijQVgIJvfdm7y2oTYQzrp0oxWY6uL_6ko_O-3GX1746qEqA3kHzKNJWadq9LNv_T0VMLDjhum1l8UTWoNdPphGhm3c3Sv2BGK6ZTqWlVeUmPMH-j9c46bEBohZTIW1_w63faV3Ug"/>
+<div class="p-4 flex-1 flex flex-col">
+<h4 class="text-xs font-bold mb-1">竹纤维随行杯</h4>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-[#2ECC71] font-bold text-sm">1,200</span>
+<span class="material-symbols-outlined text-on-surface-variant text-lg" data-icon="add_circle">add_circle</span>
+</div>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="bg-white rounded-[24px] overflow-hidden flex flex-col shadow-sm">
+<img alt="环保袋" class="h-32 w-full object-cover" data-alt="beige canvas tote bag hanging on a simple wooden hook in a minimalist bright room" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAT4N5fjv2CMjLT3LwaSCTQxmJjIEQxB-hJPtZBKas6bFTgREyp3SjlapEs4IZGlX9Ghu7XwngbTRQtXx2UncywbFhclcniXtS4-FTI2SNydU9eQfwtlpDp_01ubfr57jhWBW-qnISXctAuF6bxKXPD9Epl8b26CfO1sdMudVlTM2mZ8C5q-FqIpaPFiaq9XiR_Gjh4hLTpNviPN9baxsBNmb6TeVgPj419Pu_hJOMOiRgA0n3sNvvx2Mf1tTUwW_HcuZUple1zm_c"/>
+<div class="p-4 flex-1 flex flex-col">
+<h4 class="text-xs font-bold mb-1">碳中和联名帆布袋</h4>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-[#2ECC71] font-bold text-sm">600</span>
+<span class="material-symbols-outlined text-on-surface-variant text-lg" data-icon="add_circle">add_circle</span>
+</div>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="bg-white rounded-[24px] overflow-hidden flex flex-col shadow-sm">
+<img alt="多肉植物" class="h-32 w-full object-cover" data-alt="small ceramic pot with a tiny healthy succulent plant on a sunlit windowsill" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCBtdSDkcZxH-LjRAkJpFF5jvBV2K6W_-YwaklQtvjqgSjJlXcmqE-C4_nkdRsUzIrd5M3mp8MrwsKLhNwBj59fds5cEToZQwae8XHEqFrcw45R4wIhXYdZIGXVG_Rv4j77w_J7vdQOUKUOqKyR77axTmlxXHh90fSGRzqfGn9oZQrd0jLD0gCfMjnIL8ymlvZESb1E9zwCHlM6m4Agwp0Y-7jAlp_IdDZOrfpkfpXuxIZouZTGT_sdiIeIArUUeh6m8td09DsCV2A"/>
+<div class="p-4 flex-1 flex flex-col">
+<h4 class="text-xs font-bold mb-1">办工桌净化小多肉</h4>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-[#2ECC71] font-bold text-sm">300</span>
+<span class="material-symbols-outlined text-on-surface-variant text-lg" data-icon="add_circle">add_circle</span>
+</div>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="bg-white rounded-[24px] overflow-hidden flex flex-col shadow-sm">
+<img alt="笔记本" class="h-32 w-full object-cover" data-alt="elegant dark green notebook with a fine pen resting on top on a wooden table" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA3xZFVhA-qrVAARqgWwzMyx5uZDLhgkyjC23MlAeroRVDEGfBieqmrnPdTy26J9RrFU7R5YogWKhAG0zKZIflmc1LnLEAguRSxMzmC1Xyv1xJkuEpzoGAUThrg8g3aNsuauOr92PFCh8LejCesg-ipG_WPQF6WkP9GIC3TJF4Zy_qS-M1hBOa3Z0OdMdMRWBlOEyqfuZUO9rdybCgKrTETU_8s7URKPePWhRvhVq5r751tg1KKpf4PlTRNQ3MkWcYcd5-MIs0VUN4"/>
+<div class="p-4 flex-1 flex flex-col">
+<h4 class="text-xs font-bold mb-1">FSC认证环保笔记本</h4>
+<div class="mt-auto flex items-center justify-between">
+<span class="text-[#2ECC71] font-bold text-sm">850</span>
+<span class="material-symbols-outlined text-on-surface-variant text-lg" data-icon="add_circle">add_circle</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="max-w-2xl mx-auto px-8 flex flex-col items-center gap-2 w-full py-12 bg-transparent">
+<p class="font-['Source_Han_Sans_SC'] text-[0.6875rem] leading-relaxed text-center text-zinc-400">
+                © 2024 碳中和校园 initiative. 所有数据遵循 中国台湾地区 相关合规标准.
+            </p>
+<div class="flex gap-4">
+<a class="text-[0.6875rem] text-zinc-400 hover:text-zinc-600" href="#">隐私政策</a>
+<a class="text-[0.6875rem] text-zinc-400 hover:text-zinc-600" href="#">服务协议</a>
+<a class="text-[0.6875rem] text-zinc-400 hover:text-zinc-600" href="#">关于我们</a>
+</div>
+</footer>
+</main>
+<!-- BottomNavBar -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-6 pt-3 bg-white/90 dark:bg-zinc-950/90 backdrop-blur-2xl rounded-t-[32px] shadow-[0_-4px_20px_rgba(0,0,0,0.04)]">
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-4 py-2 hover:text-[#2ECC71] transition-all group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:translate-y-[-2px] duration-300" data-icon="home">home</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider">首页</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-4 py-2 hover:text-[#2ECC71] transition-all group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:translate-y-[-2px] duration-300" data-icon="edit_note">edit_note</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider">日志</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-4 py-2 hover:text-[#2ECC71] transition-all group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:translate-y-[-2px] duration-300" data-icon="grid_view">grid_view</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider">广场</span>
+</a>
+<a class="flex flex-col items-center justify-center bg-[#2ECC71]/10 text-[#2ECC71] rounded-2xl px-4 py-2 transition-all" href="#">
+<span class="material-symbols-outlined mb-1" data-icon="shopping_bag" style="font-variation-settings: 'FILL' 1;">shopping_bag</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider font-bold">商城</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-4 py-2 hover:text-[#2ECC71] transition-all group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:translate-y-[-2px] duration-300" data-icon="assessment">assessment</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider">报告</span>
+</a>
+<a class="flex flex-col items-center justify-center text-zinc-400 dark:text-zinc-500 px-4 py-2 hover:text-[#2ECC71] transition-all group" href="#">
+<span class="material-symbols-outlined mb-1 group-active:translate-y-[-2px] duration-300" data-icon="person">person</span>
+<span class="font-['Source_Han_Sans_SC'] text-[0.6875rem] uppercase tracking-wider">我的</span>
+</a>
+</nav>
+</body></html>

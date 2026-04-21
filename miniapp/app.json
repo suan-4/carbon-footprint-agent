@@ -1,0 +1,24 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/log/index",
+    "pages/plaza/index",
+    "pages/mall/index",
+    "pages/report/index",
+    "pages/profile/index",
+    "pages/redemptions/index",
+    "pages/agent/index",
+    "pages/settings/index",
+    "pages/privacy/index",
+    "pages/agreement/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "碳迹同行",
+    "navigationBarBackgroundColor": "#F7FBF8",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#F4F8F4",
+    "backgroundTextStyle": "light"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

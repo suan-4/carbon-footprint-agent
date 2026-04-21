@@ -1,0 +1,20 @@
+flowchart TD
+    U1[用户进入首页] --> U2[点击日志打卡入口]
+    U2 --> U3[选择低碳行为]
+    U3 --> U4[POST /api/behaviors]
+    U4 --> U5[appDataService 校验行为目录]
+    U5 --> U6{MySQL 可用?}
+    U6 -- 是 --> U7[写入 behavior_records / point_logs\n更新 point_accounts 和 users]
+    U6 -- 否 --> U8[回退 mockStore 返回演示结果]
+    U7 --> U9[返回积分与减碳结果]
+    U8 --> U9
+    U9 --> U10[日志页弹出奖励 Toast]
+    U10 --> U11[报告页请求 /api/reports/weekly-overview]
+    U11 --> U12[聚合近 7 天行为记录]
+    U12 --> U13[生成周报指标与趋势图]
+    U13 --> U14[用户点击“让小碳解读报告”]
+    U14 --> U15[POST /api/agent/chat]
+    U15 --> U16[knowledgeService 检索知识片段]
+    U16 --> U17[agentService 组织 prompt]
+    U17 --> U18[调用模型 API 返回答案与建议问题]
+    U18 --> U19[Agent 页面展示对话结果]

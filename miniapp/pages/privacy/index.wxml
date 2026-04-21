@@ -1,0 +1,15 @@
+<view class="legal-page">
+  <view class="legal-header">
+    <view class="legal-title">隐私政策</view>
+    <view class="legal-desc">本页用于小程序审核和用户告知，正式上线前请补齐真实主体信息与联系方式。</view>
+  </view>
+
+  <block wx:for="{{sections}}" wx:key="title">
+    <view class="legal-card">
+      <view class="legal-card-title">{{item.title}}</view>
+      <block wx:for="{{item.items}}" wx:key="*this">
+        <view class="legal-item">{{index + 1}}. {{item}}</view>
+      </block>
+    </view>
+  </block>
+</view>

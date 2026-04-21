@@ -1,0 +1,124 @@
+<view class="app-shell profile-shell">
+  <view class="shell-aura shell-aura-left"></view>
+  <view class="shell-aura shell-aura-right"></view>
+
+  <view class="shell-topbar">
+    <view class="shell-brand">
+      <view class="shell-brand-icon">
+        <image class="shell-brand-icon-image" src="/assets/icons/leaf.svg" mode="aspectFit"></image>
+      </view>
+      <view class="shell-brand-title">我的</view>
+    </view>
+    <view class="shell-topbar-caption">同步积分、减碳与账号信息</view>
+  </view>
+
+  <scroll-view scroll-y class="shell-scroll">
+    <view class="shell-content">
+      <view class="profile-hero">
+        <view class="profile-user-card glass-surface">
+          <view class="profile-avatar-wrap">
+            <image class="profile-avatar" src="/assets/icons/profile.svg" mode="aspectFit"></image>
+            <view class="profile-verified">
+              <image class="profile-verified-icon" src="/assets/icons/verified.svg" mode="aspectFit"></image>
+            </view>
+          </view>
+          <view class="profile-user-main">
+            <view class="profile-user-name">{{user.nickname}}</view>
+            <view class="profile-user-level">碳迹等级：{{user.level}}</view>
+            <view class="profile-verified-pill">
+              <image class="profile-pill-icon" src="/assets/icons/verified.svg" mode="aspectFit"></image>
+              <text>已认证账号</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="profile-carbon-card">
+          <view class="profile-carbon-value">{{user.carbonKg}}</view>
+          <view class="profile-carbon-label">累计减碳 KG</view>
+        </view>
+      </view>
+
+      <view class="profile-session-card glass-surface">
+        <view class="profile-session-copy">
+          <view class="profile-session-title">{{session.loggedIn ? '当前已登录' : '当前未登录'}}</view>
+          <view class="profile-session-desc">{{session.modeText}}</view>
+        </view>
+        <button class="profile-session-button" bindtap="handleSessionAction" loading="{{authLoading}}">
+          {{session.actionText}}
+        </button>
+      </view>
+
+      <view class="profile-section-label">偏好设置</view>
+      <view class="profile-panel glass-surface">
+        <block wx:for="{{preferences}}" wx:key="key">
+          <view class="profile-row {{index !== preferences.length - 1 ? 'profile-row-divider' : ''}}">
+            <view class="profile-row-left">
+              <view class="profile-row-icon">
+                <image class="profile-row-icon-image" src="{{item.icon}}" mode="aspectFit"></image>
+              </view>
+              <view class="profile-row-copy">
+                <view class="profile-row-title">{{item.title}}</view>
+              </view>
+            </view>
+            <view class="profile-toggle {{item.checked ? 'profile-toggle-on' : ''}}" data-key="{{item.key}}" bindtap="togglePreference">
+              <view class="profile-toggle-dot {{item.checked ? 'profile-toggle-dot-on' : ''}}"></view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <view class="profile-section-label">账户与订单</view>
+      <view class="profile-panel glass-surface">
+        <block wx:for="{{accountItems}}" wx:key="title">
+          <view class="profile-row {{index !== accountItems.length - 1 ? 'profile-row-divider' : ''}}" data-path="{{item.path}}" bindtap="openEntry">
+            <view class="profile-row-left">
+              <view class="profile-row-icon">
+                <image class="profile-row-icon-image" src="{{item.icon}}" mode="aspectFit"></image>
+              </view>
+              <view class="profile-row-copy">
+                <view class="profile-row-title">{{item.title}}</view>
+                <view class="profile-row-desc">{{item.desc}}</view>
+              </view>
+            </view>
+            <image class="profile-chevron" src="/assets/icons/chevron-right.svg" mode="aspectFit"></image>
+          </view>
+        </block>
+      </view>
+
+      <view class="profile-section-label">合规与支持</view>
+      <view class="profile-panel glass-surface">
+        <block wx:for="{{supportItems}}" wx:key="title">
+          <view class="profile-row {{index !== supportItems.length - 1 ? 'profile-row-divider' : ''}}" data-path="{{item.path}}" bindtap="openEntry">
+            <view class="profile-row-left">
+              <view class="profile-row-icon profile-row-icon-neutral">
+                <image class="profile-row-icon-image" src="{{item.icon}}" mode="aspectFit"></image>
+              </view>
+              <view class="profile-row-copy">
+                <view class="profile-row-title">{{item.title}}</view>
+              </view>
+            </view>
+            <image class="profile-chevron" src="/assets/icons/chevron-right.svg" mode="aspectFit"></image>
+          </view>
+        </block>
+      </view>
+
+      <view class="profile-footer">
+        <view class="profile-footer-links">
+          <text data-path="/pages/privacy/index" bindtap="openEntry">隐私政策</text>
+          <text data-path="/pages/agreement/index" bindtap="openEntry">用户协议</text>
+          <text data-path="/pages/settings/index" bindtap="openEntry">接口环境</text>
+        </view>
+        <view class="profile-footer-copy">© 2026 碳迹同行 Initiative</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="shell-bottom-nav">
+    <block wx:for="{{tabs}}" wx:key="key">
+      <view class="shell-nav-item {{item.key === 'profile' ? 'shell-nav-item-active' : ''}}" data-path="{{item.path}}" bindtap="goToPage">
+        <image class="shell-nav-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <view class="shell-nav-label">{{item.label}}</view>
+      </view>
+    </block>
+  </view>
+</view>

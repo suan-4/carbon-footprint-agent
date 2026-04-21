@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-error-container": "#93000a",
+              "on-surface": "#091d2e",
+              "outline": "#6c7b6d",
+              "surface-bright": "#f7f9ff",
+              "on-primary-fixed-variant": "#005228",
+              "on-secondary-fixed-variant": "#005228",
+              "surface-dim": "#c9dcf3",
+              "secondary-container": "#7bf8a1",
+              "surface-tint": "#006d37",
+              "secondary": "#006d37",
+              "on-tertiary-fixed": "#231b00",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#005027",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-fixed": "#00210c",
+              "tertiary-container": "#d7ae00",
+              "primary-fixed": "#6bfe9c",
+              "on-tertiary-fixed-variant": "#574500",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed-dim": "#eec209",
+              "surface-container-high": "#d9eaff",
+              "on-tertiary": "#ffffff",
+              "on-surface-variant": "#3d4a3e",
+              "error-container": "#ffdad6",
+              "on-error": "#ffffff",
+              "background": "#f7f9ff",
+              "on-background": "#091d2e",
+              "surface-container-low": "#edf4ff",
+              "on-secondary-container": "#007239",
+              "surface-variant": "#d1e4fb",
+              "surface-container": "#e3efff",
+              "surface": "#f7f9ff",
+              "outline-variant": "#bbcbbb",
+              "on-tertiary-container": "#544300",
+              "error": "#ba1a1a",
+              "tertiary-fixed": "#ffe084",
+              "inverse-on-surface": "#e8f2ff",
+              "secondary-fixed": "#7efba4",
+              "inverse-primary": "#4ae183",
+              "secondary-fixed-dim": "#61de8a",
+              "on-primary-fixed": "#00210c",
+              "surface-container-highest": "#d1e4fb",
+              "primary-container": "#2ecc71",
+              "tertiary": "#735c00",
+              "primary-fixed-dim": "#4ae183",
+              "primary": "#006d37",
+              "inverse-surface": "#203243"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans", "Source Han Sans CN", "sans-serif"],
+              "body": ["Inter", "Source Han Sans CN", "sans-serif"],
+              "label": ["Inter", "Source Han Sans CN", "sans-serif"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      body { font-family: 'Inter', 'Source Han Sans CN', sans-serif; }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+      .glass-effect {
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .chat-scroll {
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+      .chat-scroll::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+</head>
+<body class="bg-background text-on-background min-h-screen pb-40">
+<!-- TopAppBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex items-center px-4 h-16 bg-white/80 dark:bg-neutral-900/80 backdrop-blur-lg border-b border-neutral-100 dark:border-neutral-800">
+<div class="flex items-center justify-between w-full">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-emerald-600 dark:text-emerald-400">bubble_chart</span>
+<h1 class="font-['Plus_Jakarta_Sans'] font-bold tracking-tight text-neutral-900 dark:text-neutral-50 text-xl">小碳 Xiao Tan</h1>
+</div>
+<div class="flex items-center gap-1">
+<button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined text-neutral-500 dark:text-neutral-400">history</span>
+</button>
+<button class="p-2 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-colors rounded-full active:scale-95 duration-150">
+<span class="material-symbols-outlined text-neutral-500 dark:text-neutral-400">info</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content Area: Agent Q&A Focus -->
+<main class="pt-20 px-4 max-w-2xl mx-auto space-y-6">
+<!-- Chat History Container -->
+<div class="space-y-8">
+<!-- User Message -->
+<div class="flex justify-end items-end gap-2">
+<div class="bg-primary text-on-primary px-5 py-3 rounded-2xl rounded-br-none shadow-md max-w-[85%]">
+<p class="text-md font-medium leading-relaxed">怎么领取种子纸？</p>
+</div>
+</div>
+<!-- AI Response -->
+<div class="flex flex-col gap-3">
+<!-- AI Identity Header -->
+<div class="flex items-center gap-2.5 px-1">
+<div class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-on-primary-container text-lg" style="font-variation-settings: 'FILL' 1;">potted_plant</span>
+</div>
+<div>
+<span class="block text-xs font-bold text-primary tracking-wide">小碳 AI</span>
+</div>
+</div>
+<!-- Response Card -->
+<div class="bg-white p-6 rounded-[2rem] shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-neutral-50 space-y-6 relative overflow-hidden">
+<!-- Background Decoration -->
+<div class="absolute top-0 right-0 w-24 h-24 bg-primary-container/20 blur-3xl rounded-full -mr-12 -mt-12"></div>
+<div class="relative space-y-5">
+<p class="text-on-surface leading-relaxed text-[1rem]">
+                            你好呀！我是小碳。种子纸是我们为校园低碳达人准备的特殊礼物，它不仅是一张纸，更是一个能够开出花来的生命承诺。
+                        </p>
+<div class="space-y-4 pt-1">
+<h3 class="font-headline font-bold text-md text-primary flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">eco</span>
+                                领取流程
+                            </h3>
+<!-- Process List -->
+<div class="space-y-5 ml-2 border-l-2 border-primary-container/30 pl-6 py-1">
+<div class="relative">
+<div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-primary ring-4 ring-white"></div>
+<h4 class="font-bold text-sm text-on-surface">方式一：步履不停</h4>
+<p class="text-[13px] text-on-surface-variant mt-1 leading-snug">当日累计步行超过 <span class="text-primary font-bold">10 公里</span>。每一次跨步，都是对地球的一份心意。</p>
+</div>
+<div class="relative">
+<div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-primary ring-4 ring-white"></div>
+<h4 class="font-bold text-sm text-on-surface">方式二：挑战先锋</h4>
+<p class="text-[13px] text-on-surface-variant mt-1 leading-snug">参与本周的“无外卖挑战”或“光盘行动”打卡，累计满 <span class="text-primary font-bold">3 天</span> 即可解锁。</p>
+</div>
+</div>
+</div>
+<!-- Carbon Visual -->
+<div class="bg-surface-container-low p-4 rounded-2xl flex items-center justify-between border border-emerald-50">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-white flex items-center justify-center shadow-sm">
+<span class="material-symbols-outlined text-primary text-xl">forest</span>
+</div>
+<div>
+<p class="text-[10px] text-outline font-bold uppercase tracking-wider">Carbon Saved</p>
+<p class="text-lg font-['Plus_Jakarta_Sans'] font-extrabold text-on-surface">2.4 kg</p>
+</div>
+</div>
+<span class="text-[10px] bg-secondary-container text-on-secondary-container px-2 py-1 rounded-full font-bold">PREDICTED</span>
+</div>
+<p class="text-sm text-on-surface-variant italic border-l-2 border-neutral-200 pl-4 py-1">
+                            “把纸埋进土里，给它一点水和阳光，几个星期后，你会看到雏菊在向你招手。”
+                        </p>
+</div>
+</div>
+<!-- Suggested Actions -->
+<div class="flex flex-wrap gap-2 px-1 mt-2">
+<button class="bg-white border border-neutral-200 text-on-surface px-4 py-2.5 rounded-full text-xs font-medium shadow-sm active:scale-95 transition-all">
+                        🌱 如何种植？
+                    </button>
+<button class="bg-white border border-neutral-200 text-on-surface px-4 py-2.5 rounded-full text-xs font-medium shadow-sm active:scale-95 transition-all">
+                        📋 查看打卡进度
+                    </button>
+</div>
+</div>
+</div>
+<!-- Privacy & Compliance Statement -->
+<div class="pt-8 pb-4 flex flex-col items-center gap-3">
+<div class="flex items-center gap-2 px-4 py-1.5 bg-secondary-container/10 rounded-full border border-secondary-container/20">
+<span class="material-symbols-outlined text-primary text-[14px]">verified_user</span>
+<span class="text-[11px] font-medium text-outline">语音/文字仅本地处理，不上传云端</span>
+</div>
+<div class="flex items-center gap-4 opacity-30">
+<div class="h-[1px] w-10 bg-outline"></div>
+<p class="text-[9px] text-outline tracking-widest uppercase font-bold">Campus Sustainability Ledger</p>
+<div class="h-[1px] w-10 bg-outline"></div>
+</div>
+</div>
+</main>
+<!-- Prominent Chat Interface Footer -->
+<div class="fixed bottom-0 left-0 w-full z-50 bg-white/95 dark:bg-neutral-900/95 backdrop-blur-xl border-t border-neutral-100 dark:border-neutral-800 pb-safe">
+<!-- Input Area -->
+<div class="px-4 py-4 max-w-2xl mx-auto">
+<div class="flex items-center gap-3 bg-neutral-100 dark:bg-neutral-800 p-1.5 rounded-[2rem] border border-neutral-200 dark:border-neutral-700">
+<button class="w-10 h-10 flex items-center justify-center text-neutral-500 hover:text-primary transition-colors">
+<span class="material-symbols-outlined">mic</span>
+</button>
+<input class="flex-1 bg-transparent border-none focus:ring-0 text-sm py-2 px-1 placeholder-neutral-400" placeholder="向小碳提问..." type="text"/>
+<button class="w-10 h-10 bg-primary text-on-primary rounded-full flex items-center justify-center shadow-lg shadow-primary/30 active:scale-90 transition-transform">
+<span class="material-symbols-outlined">send</span>
+</button>
+</div>
+</div>
+<!-- Bottom Tab Navigation -->
+<nav class="flex justify-around items-center px-6 pt-1 pb-6">
+<a class="flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-500 px-4 py-1 hover:text-emerald-500 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">home</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-wider">首页</span>
+</a>
+<a class="flex flex-col items-center justify-center text-emerald-700 dark:text-emerald-300 px-4 py-1" href="#">
+<span class="material-symbols-outlined mb-1" style="font-variation-settings: 'FILL' 1;">chat_bubble</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-wider">小碳AI</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-500 px-4 py-1 hover:text-emerald-500 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">analytics</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-wider">足迹</span>
+</a>
+<a class="flex flex-col items-center justify-center text-neutral-400 dark:text-neutral-500 px-4 py-1 hover:text-emerald-500 transition-all" href="#">
+<span class="material-symbols-outlined mb-1">settings</span>
+<span class="font-['Plus_Jakarta_Sans'] text-[10px] font-bold uppercase tracking-wider">设置</span>
+</a>
+</nav>
+</div>
+</body></html>

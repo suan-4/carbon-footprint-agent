@@ -1,0 +1,160 @@
+<view class="app-shell mall-shell">
+  <view class="shell-aura shell-aura-left"></view>
+  <view class="shell-aura shell-aura-right"></view>
+
+  <view class="shell-topbar">
+    <view class="shell-brand">
+      <view class="shell-brand-icon">
+        <image class="shell-brand-icon-image" src="/assets/icons/bag.svg" mode="aspectFit"></image>
+      </view>
+      <view class="shell-brand-title">商城</view>
+    </view>
+    <view class="mall-balance-pill">
+      <image class="mall-balance-pill-icon" src="/assets/icons/recycle.svg" mode="aspectFit"></image>
+      <view class="mall-balance-pill-value">{{balance}}</view>
+    </view>
+  </view>
+
+  <view wx:if="{{redeemToast.visible}}" class="mall-toast-layer" catchtap="hideRedeemToast">
+    <view class="mall-toast-card">
+      <view class="mall-toast-glow"></view>
+      <view class="mall-toast-main">
+        <view class="mall-toast-badge">兑换成功</view>
+        <view class="mall-toast-title">{{redeemToast.title}}</view>
+        <view class="mall-toast-order">订单号 {{redeemToast.orderNo}}</view>
+        <view class="mall-toast-meta">
+          <view class="mall-toast-chip">剩余积分 {{redeemToast.balance}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="shell-scroll">
+    <view class="shell-content mall-content">
+      <view class="mall-hero shell-card">
+        <view class="mall-hero-badge">{{featured.badge}}</view>
+        <view class="mall-hero-title">{{featured.name}}</view>
+        <view class="mall-hero-desc">{{featured.desc}}</view>
+
+        <view class="mall-hero-meta">
+          <view class="mall-hero-meta-pill">
+            <image class="mall-hero-meta-icon" src="/assets/icons/verified.svg" mode="aspectFit"></image>
+            <text>{{featured.typeLabel}}</text>
+          </view>
+          <view class="mall-hero-meta-pill mall-hero-meta-pill-ghost">
+            <image class="mall-hero-meta-icon" src="/assets/icons/bell.svg" mode="aspectFit"></image>
+            <text>剩余 {{featured.stock}} 份</text>
+          </view>
+        </view>
+
+        <view class="mall-hero-bottom">
+          <view>
+            <view class="mall-hero-price">{{featured.pointsCost}}</view>
+            <view class="mall-hero-price-unit">积分兑换</view>
+          </view>
+          <button
+            class="mall-hero-button {{featured.canRedeem ? '' : 'mall-hero-button-disabled'}}"
+            data-id="{{featured.id}}"
+            data-name="{{featured.name}}"
+            data-cost="{{featured.pointsCost}}"
+            bindtap="redeemProduct"
+          >
+            {{featured.buttonText}}
+          </button>
+        </view>
+
+        <view class="mall-hero-orb">
+          <view class="mall-hero-orb-glow"></view>
+          <view class="mall-hero-orb-main">
+            <image class="mall-hero-orb-image" src="{{featured.icon}}" mode="aspectFit"></image>
+          </view>
+        </view>
+      </view>
+
+      <view class="mall-stats">
+        <view class="mall-stat-card glass-surface">
+          <view class="mall-stat-label">当前积分</view>
+          <view class="mall-stat-value">{{balance}}</view>
+        </view>
+        <view class="mall-stat-card glass-surface">
+          <view class="mall-stat-label">可兑换商品</view>
+          <view class="mall-stat-value">{{redeemableCount}}</view>
+        </view>
+      </view>
+
+      <view class="mini-section-head">
+        <view class="mini-section-title">精选权益</view>
+        <view class="mini-section-link">实时库存</view>
+      </view>
+
+      <view class="mall-product-list">
+        <block wx:for="{{products}}" wx:key="id">
+          <view class="mall-product-card glass-surface">
+            <view class="mall-product-icon-wrap {{item.categoryClass}}">
+              <image class="mall-product-icon" src="{{item.icon}}" mode="aspectFit"></image>
+            </view>
+
+            <view class="mall-product-main">
+              <view class="mall-product-head">
+                <view class="mall-product-name">{{item.name}}</view>
+                <view class="mall-product-pill {{item.pillClass}}">{{item.typeLabel}}</view>
+              </view>
+
+              <view class="mall-product-desc">{{item.desc}}</view>
+
+              <view class="mall-product-meta">
+                <view class="mall-product-stock">库存 {{item.stock}}</view>
+                <view class="mall-product-hint">{{item.hint}}</view>
+              </view>
+
+              <view class="mall-product-bottom">
+                <view class="mall-product-price">{{item.pointsCost}} 积分</view>
+                <button
+                  class="mall-product-button {{item.canRedeem ? 'mall-product-button-active' : 'mall-product-button-disabled'}}"
+                  data-id="{{item.id}}"
+                  data-name="{{item.name}}"
+                  data-cost="{{item.pointsCost}}"
+                  bindtap="redeemProduct"
+                >
+                  {{item.buttonText}}
+                </button>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <view class="mini-section-head">
+        <view class="mini-section-title">兑换说明</view>
+        <view class="mini-section-link">MVP 流程</view>
+      </view>
+
+      <view class="mall-guide glass-surface shell-card">
+        <block wx:for="{{guideSteps}}" wx:key="title">
+          <view class="mall-guide-row {{index !== guideSteps.length - 1 ? 'mall-guide-row-divider' : ''}}">
+            <view class="mall-guide-index">0{{index + 1}}</view>
+            <view class="mall-guide-copy">
+              <view class="mall-guide-title">{{item.title}}</view>
+              <view class="mall-guide-desc">{{item.desc}}</view>
+            </view>
+            <image class="mall-guide-chevron" src="/assets/icons/chevron-right.svg" mode="aspectFit"></image>
+          </view>
+        </block>
+      </view>
+
+      <view class="mall-footer">
+        <view>现在已经接入真实兑换，下一步再补订单页和核销状态</view>
+        <view class="mall-footer-sub">Carbon Reward Center</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="shell-bottom-nav">
+    <block wx:for="{{tabs}}" wx:key="key">
+      <view class="shell-nav-item {{item.key === 'mall' ? 'shell-nav-item-active' : ''}}" data-path="{{item.path}}" bindtap="goToPage">
+        <image class="shell-nav-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <view class="shell-nav-label">{{item.label}}</view>
+      </view>
+    </block>
+  </view>
+</view>

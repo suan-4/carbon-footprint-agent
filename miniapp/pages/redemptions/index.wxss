@@ -1,0 +1,223 @@
+.redemption-shell {
+  background:
+    radial-gradient(circle at top, rgba(74, 225, 131, 0.14), transparent 24%),
+    linear-gradient(180deg, #f7fbf8 0%, #eef4ff 100%);
+}
+
+.redemption-topbar {
+  gap: 12rpx;
+}
+
+.redemption-topbar .shell-brand {
+  flex: 1;
+  min-width: 0;
+}
+
+.redemption-topbar .shell-brand-title {
+  font-size: 32rpx;
+}
+
+.redemption-topbar-button {
+  flex-shrink: 0;
+}
+
+.redemption-topbar-back {
+  width: 26rpx;
+  height: 26rpx;
+  transform: rotate(180deg);
+}
+
+.redemption-balance {
+  flex-shrink: 0;
+  padding: 12rpx 18rpx;
+  border-radius: 999rpx;
+  background: rgba(46, 204, 113, 0.12);
+  color: #179752;
+  font-size: 20rpx;
+  font-weight: 800;
+}
+
+.redemption-content {
+  padding-bottom: 120rpx;
+}
+
+.redemption-hero {
+  background:
+    radial-gradient(circle at top right, rgba(123, 248, 161, 0.26), transparent 30%),
+    rgba(255, 255, 255, 0.78);
+}
+
+.redemption-hero-label {
+  display: inline-block;
+  padding: 8rpx 16rpx;
+  border-radius: 999rpx;
+  background: rgba(46, 204, 113, 0.12);
+  color: #159652;
+  font-size: 18rpx;
+  font-weight: 800;
+  letter-spacing: 2rpx;
+}
+
+.redemption-hero-title {
+  margin-top: 18rpx;
+  font-size: 40rpx;
+  font-weight: 800;
+  color: #112530;
+}
+
+.redemption-hero-desc {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #6f7e75;
+}
+
+.redemption-summary {
+  margin-top: 22rpx;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16rpx;
+}
+
+.redemption-summary-card {
+  border-radius: 30rpx;
+  padding: 26rpx 24rpx;
+}
+
+.redemption-summary-label {
+  font-size: 20rpx;
+  color: #7a8780;
+  font-weight: 800;
+}
+
+.redemption-summary-value {
+  margin-top: 16rpx;
+  font-size: 48rpx;
+  line-height: 1;
+  color: #129652;
+  font-weight: 800;
+}
+
+.redemption-list {
+  margin-top: 22rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 18rpx;
+}
+
+.redemption-card {
+  border-radius: 30rpx;
+  padding: 24rpx;
+}
+
+.redemption-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16rpx;
+}
+
+.redemption-card-title {
+  font-size: 30rpx;
+  font-weight: 800;
+  color: #112530;
+}
+
+.redemption-card-order {
+  margin-top: 8rpx;
+  font-size: 20rpx;
+  color: #78867e;
+}
+
+.redemption-status {
+  flex-shrink: 0;
+  padding: 10rpx 16rpx;
+  border-radius: 999rpx;
+  font-size: 18rpx;
+  font-weight: 800;
+}
+
+.redemption-status-pending {
+  background: rgba(255, 224, 132, 0.26);
+  color: #9c7300;
+}
+
+.redemption-status-issued {
+  background: rgba(46, 204, 113, 0.14);
+  color: #179752;
+}
+
+.redemption-card-meta {
+  margin-top: 22rpx;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16rpx;
+}
+
+.redemption-meta-item {
+  padding: 18rpx 20rpx;
+  border-radius: 24rpx;
+  background: rgba(9, 29, 46, 0.04);
+}
+
+.redemption-meta-label {
+  font-size: 18rpx;
+  color: #7a8780;
+}
+
+.redemption-meta-value {
+  margin-top: 10rpx;
+  font-size: 22rpx;
+  line-height: 1.5;
+  color: #122630;
+  font-weight: 700;
+}
+
+.redemption-empty {
+  margin-top: 22rpx;
+  text-align: center;
+}
+
+.redemption-empty-orb {
+  width: 120rpx;
+  height: 120rpx;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: rgba(46, 204, 113, 0.12);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.redemption-empty-orb-image {
+  width: 56rpx;
+  height: 56rpx;
+}
+
+.redemption-empty-title {
+  margin-top: 22rpx;
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #112530;
+}
+
+.redemption-empty-desc {
+  margin-top: 14rpx;
+  font-size: 24rpx;
+  line-height: 1.7;
+  color: #6f7e75;
+}
+
+.redemption-empty-button {
+  margin-top: 26rpx;
+  width: 100%;
+  border-radius: 28rpx;
+  background: #23aa5d;
+  color: #ffffff;
+  font-size: 26rpx;
+  font-weight: 800;
+}
+
+.redemption-empty-button::after {
+  border: none;
+}

@@ -1,0 +1,106 @@
+<view class="app-shell report-shell">
+  <view class="shell-aura shell-aura-left"></view>
+  <view class="shell-aura shell-aura-right"></view>
+
+  <view class="shell-topbar">
+    <view class="shell-brand">
+      <view class="shell-brand-icon">
+        <image class="shell-brand-icon-image" src="/assets/icons/report.svg" mode="aspectFit"></image>
+      </view>
+      <view class="shell-brand-title">碳报告</view>
+    </view>
+    <view class="shell-topbar-caption">{{overview.weekLabel}}</view>
+  </view>
+
+  <scroll-view scroll-y class="shell-scroll">
+    <view class="shell-content report-content">
+      <view class="report-hero glass-surface shell-card">
+        <view class="report-hero-badge">WEEKLY OVERVIEW</view>
+        <view class="report-hero-value">{{overview.carbonKg}}</view>
+        <view class="report-hero-unit">kg 碳减排</view>
+        <view class="report-hero-trend">
+          <image class="report-hero-trend-icon" src="/assets/icons/leaf.svg" mode="aspectFit"></image>
+          <text>较上一日变化 {{overview.trendPercent}}%</text>
+        </view>
+      </view>
+
+      <view class="report-metrics">
+        <block wx:for="{{metrics}}" wx:key="key">
+          <view class="report-metric-card glass-surface">
+            <view class="report-metric-icon">
+              <image class="report-metric-icon-image" src="{{item.icon}}" mode="aspectFit"></image>
+            </view>
+            <view class="report-metric-label">{{item.label}}</view>
+            <view class="report-metric-value">{{item.value}}</view>
+          </view>
+        </block>
+      </view>
+
+      <view class="report-chart-card glass-surface shell-card">
+        <view class="report-section-head">
+          <view class="report-section-title">周减碳趋势</view>
+          <view class="report-section-tag">最近 5 天</view>
+        </view>
+
+        <view class="report-chart">
+          <view class="report-chart-grid">
+            <view class="report-grid-line"></view>
+            <view class="report-grid-line"></view>
+            <view class="report-grid-line"></view>
+            <view class="report-grid-line"></view>
+          </view>
+          <view class="report-bars">
+            <block wx:for="{{trendBars}}" wx:key="day">
+              <view class="report-bar-item">
+                <view class="report-bar-value">{{item.carbonKg}}kg</view>
+                <view class="report-bar-shell">
+                  <view class="report-bar-fill {{item.active ? 'report-bar-fill-active' : ''}}" style="height: {{item.height}}rpx;"></view>
+                </view>
+                <view class="report-bar-day">{{item.day}}</view>
+              </view>
+            </block>
+          </view>
+        </view>
+      </view>
+
+      <view class="report-highlight-card shell-card">
+        <view class="report-highlight-label">{{highlight.title}}</view>
+        <view class="report-highlight-value">{{highlight.value}}</view>
+        <view class="report-highlight-desc">{{highlight.desc}}</view>
+      </view>
+
+      <view class="report-agent-card glass-surface shell-card" bindtap="openAgent">
+        <view class="report-agent-orb-wrap">
+          <view class="report-agent-orb-glow"></view>
+          <view class="report-agent-orb">
+            <image class="report-agent-orb-image" src="/assets/icons/robot.svg" mode="aspectFit"></image>
+          </view>
+          <view class="report-agent-orb-badge">小碳 AI</view>
+        </view>
+        <view class="report-agent-main">
+          <view class="report-agent-title">让小碳解读这份周报</view>
+          <view class="report-agent-desc">看看你这周最值得继续坚持的低碳行为。</view>
+        </view>
+      </view>
+
+      <view class="report-actions">
+        <button class="report-primary-button" bindtap="generatePoster">生成分享海报</button>
+        <button class="report-secondary-button" bindtap="openAgent">让小碳解读报告</button>
+      </view>
+
+      <view class="report-footer">
+        <view>© 2026 碳迹同行 Initiative</view>
+        <view class="report-footer-sub">Weekly Carbon Storyboard</view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view class="shell-bottom-nav">
+    <block wx:for="{{tabs}}" wx:key="key">
+      <view class="shell-nav-item {{item.key === 'report' ? 'shell-nav-item-active' : ''}}" data-path="{{item.path}}" bindtap="goToPage">
+        <image class="shell-nav-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <view class="shell-nav-label">{{item.label}}</view>
+      </view>
+    </block>
+  </view>
+</view>

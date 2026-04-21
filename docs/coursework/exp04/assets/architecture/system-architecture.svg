@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <rect width="100%" height="100%" fill="#f8fafc"/>
+  <style>
+    .title { font: 700 26px 'Microsoft YaHei', sans-serif; fill: #0f172a; }
+    .subtitle { font: 500 14px 'Microsoft YaHei', sans-serif; fill: #475569; }
+    .label { font: 600 16px 'Microsoft YaHei', sans-serif; fill: #0f172a; }
+    .small { font: 500 12px 'Microsoft YaHei', sans-serif; fill: #475569; }
+    .tiny { font: 500 11px 'Microsoft YaHei', sans-serif; fill: #64748b; }
+    .box { fill: white; stroke: #94a3b8; stroke-width: 2; rx: 18; ry: 18; }
+    .wire { fill: #ffffff; stroke: #64748b; stroke-width: 2; rx: 12; ry: 12; }
+    .accent { fill: #dbeafe; stroke: #60a5fa; stroke-width: 2; rx: 14; ry: 14; }
+    .accent2 { fill: #dcfce7; stroke: #34d399; stroke-width: 2; rx: 14; ry: 14; }
+    .accent3 { fill: #fef3c7; stroke: #f59e0b; stroke-width: 2; rx: 14; ry: 14; }
+    .accent4 { fill: #fee2e2; stroke: #f87171; stroke-width: 2; rx: 14; ry: 14; }
+    .line { stroke: #64748b; stroke-width: 2.4; fill: none; marker-end: url(#arrow); }
+  </style>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  
+  <text x="60" y="60" class="title">碳迹同行 Agent 系统整体架构图</text>
+  <text x="60" y="90" class="subtitle">分层架构：微信小程序前端 + Express 后端 + MySQL/Mock 双数据源 + 知识库 RAG</text>
+  <rect x="60" y="140" width="320" height="620" class="accent"/>
+  <text x="90" y="180" class="label">表现层：微信小程序前端</text>
+  <rect x="90" y="220" width="260" height="90" class="box"/>
+  <text x="115" y="255" class="label">首页 /home</text>
+  <text x="115" y="282" class="small">积分看板、挑战入口、AI 引导</text>
+  <rect x="90" y="330" width="260" height="90" class="box"/>
+  <text x="115" y="365" class="label">日志打卡 /log</text>
+  <text x="115" y="392" class="small">选择行为、提交打卡、奖励反馈</text>
+  <rect x="90" y="440" width="260" height="90" class="box"/>
+  <text x="115" y="475" class="label">碳报告 /report</text>
+  <text x="115" y="502" class="small">周报统计、趋势图、亮点总结</text>
+  <rect x="90" y="550" width="260" height="90" class="box"/>
+  <text x="115" y="585" class="label">小碳问答 /agent</text>
+  <text x="115" y="612" class="small">对话问答、建议问题、消息流</text>
+  <rect x="90" y="660" width="260" height="70" class="wire"/>
+  <text x="115" y="700" class="label">utils/request 统一请求封装</text>
+
+  <rect x="470" y="140" width="430" height="620" class="accent2"/>
+  <text x="500" y="180" class="label">接口与业务层：Node.js + Express</text>
+  <rect x="500" y="220" width="370" height="70" class="box"/>
+  <text x="525" y="262" class="label">app.js / server.js 应用入口</text>
+  <rect x="500" y="310" width="170" height="90" class="box"/>
+  <text x="525" y="345" class="label">路由层 routes</text>
+  <text x="525" y="372" class="small">health / users / behaviors / reports / agent</text>
+  <rect x="700" y="310" width="170" height="90" class="box"/>
+  <text x="725" y="345" class="label">控制器层</text>
+  <text x="725" y="372" class="small">参数校验、响应组织</text>
+  <rect x="500" y="430" width="370" height="120" class="box"/>
+  <text x="525" y="470" class="label">业务服务 appDataService</text>
+  <text x="525" y="498" class="small">用户 / 积分 / 行为 / 商品 / 周报 / 数据源切换</text>
+  <rect x="500" y="570" width="170" height="120" class="box"/>
+  <text x="525" y="610" class="label">Agent 服务</text>
+  <text x="525" y="638" class="small">prompt 构造、模型调用</text>
+  <rect x="700" y="570" width="170" height="120" class="box"/>
+  <text x="725" y="610" class="label">knowledgeService</text>
+  <text x="725" y="638" class="small">知识切块、关键词检索</text>
+
+  <rect x="980" y="140" width="360" height="620" class="accent3"/>
+  <text x="1010" y="180" class="label">数据与外部能力层</text>
+  <rect x="1010" y="230" width="300" height="110" class="box"/>
+  <text x="1040" y="270" class="label">MySQL</text>
+  <text x="1040" y="298" class="small">users / point_accounts / behavior_records / orders</text>
+  <rect x="1010" y="370" width="300" height="90" class="box"/>
+  <text x="1040" y="408" class="label">mockStore</text>
+  <text x="1040" y="435" class="small">数据库不可用时的演示数据回退</text>
+  <rect x="1010" y="490" width="300" height="90" class="box"/>
+  <text x="1040" y="528" class="label">Markdown 知识库</text>
+  <text x="1040" y="555" class="small">rules / faq / privacy / rewards / carbon_basics</text>
+  <rect x="1010" y="610" width="300" height="90" class="box"/>
+  <text x="1040" y="648" class="label">OpenAI 兼容模型 API</text>
+  <text x="1040" y="675" class="small">生成自然语言回答与建议追问</text>
+
+  <path d="M350 695 L500 695" class="line"/>
+  <path d="M670 355 L700 355" class="line"/>
+  <path d="M585 290 L585 310" class="line"/>
+  <path d="M785 400 L785 430" class="line"/>
+  <path d="M685 550 L685 570" class="line"/>
+  <path d="M870 490 L1010 285" class="line"/>
+  <path d="M870 490 L1010 415" class="line"/>
+  <path d="M870 630 L1010 535" class="line"/>
+  <path d="M670 630 L1010 655" class="line"/>
+        
+</svg>

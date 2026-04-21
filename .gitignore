@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.DS_Store
+Thumbs.db
+.env
+server/.env
+miniapp/node_modules/
+server/node_modules/
+

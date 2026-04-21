@@ -1,0 +1,39 @@
+flowchart LR
+    subgraph Client["微信小程序前端 miniapp"]
+        H[首页\npages/home]
+        L[日志打卡\npages/log]
+        R[碳报告\npages/report]
+        A[小碳问答\npages/agent]
+        U[请求封装\nutils/request]
+        H --> U
+        L --> U
+        R --> U
+        A --> U
+    end
+
+    subgraph Server["Node.js + Express 后端 server"]
+        APP[应用入口\napp.js / server.js]
+        ROUTE[路由层\nroutes/*.js]
+        CTRL[控制器层\ncontrollers/*.js]
+        SERVICE[业务服务层\nappDataService.js]
+        AGENT[Agent 服务\nagentService.js]
+        KNOW[知识检索\nknowledgeService.js]
+        MW[中间件\nauthContext / errorHandler]
+        APP --> MW --> ROUTE --> CTRL
+        CTRL --> SERVICE
+        CTRL --> AGENT
+        AGENT --> KNOW
+    end
+
+    subgraph Data["数据与外部能力"]
+        MYSQL[(MySQL\ndatabase/schema.sql)]
+        MOCK[(Mock Store\nmockStore.js)]
+        KB[(Markdown 知识库\nknowledge/*.md)]
+        OPENAI[(OpenAI 兼容模型 API)]
+        SERVICE --> MYSQL
+        SERVICE --> MOCK
+        KNOW --> KB
+        AGENT --> OPENAI
+    end
+
+    U -->|REST / JSON| APP

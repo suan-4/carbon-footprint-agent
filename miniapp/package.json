@@ -1,0 +1,11 @@
+{
+  "name": "carbon-footprint-miniapp",
+  "version": "0.1.0",
+  "private": true,
+  "description": "碳迹同行微信小程序工程骨架",
+  "devDependencies": {
+    "miniprogram-api-typings": "^4.0.1",
+    "typescript": "^5.6.3"
+  }
+}
+

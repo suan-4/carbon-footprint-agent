@@ -1,0 +1,72 @@
+<view class="app-shell redemption-shell">
+  <view class="shell-aura shell-aura-left"></view>
+  <view class="shell-aura shell-aura-right"></view>
+
+  <view class="shell-topbar redemption-topbar">
+    <view class="shell-topbar-button" bindtap="goBack">
+      <image class="redemption-topbar-back" src="/assets/icons/chevron-right.svg" mode="aspectFit"></image>
+    </view>
+    <view class="shell-brand">
+      <view class="shell-brand-icon">
+        <image class="shell-brand-icon-image" src="/assets/icons/bag.svg" mode="aspectFit"></image>
+      </view>
+      <view class="shell-brand-title">我的兑换</view>
+    </view>
+    <view class="redemption-balance">{{balance}} 积分</view>
+  </view>
+
+  <scroll-view scroll-y class="shell-scroll">
+    <view class="shell-content redemption-content">
+      <view class="redemption-hero shell-card">
+        <view class="redemption-hero-label">ORDER CENTER</view>
+        <view class="redemption-hero-title">商城兑换记录</view>
+        <view class="redemption-hero-desc">这里会展示你的兑换订单号、时间和当前状态，后续再补核销与发放结果。</view>
+      </view>
+
+      <view class="redemption-summary">
+        <view class="redemption-summary-card glass-surface">
+          <view class="redemption-summary-label">当前积分</view>
+          <view class="redemption-summary-value">{{balance}}</view>
+        </view>
+        <view class="redemption-summary-card glass-surface">
+          <view class="redemption-summary-label">订单数量</view>
+          <view class="redemption-summary-value">{{orders.length}}</view>
+        </view>
+      </view>
+
+      <view wx:if="{{orders.length}}" class="redemption-list">
+        <block wx:for="{{orders}}" wx:key="orderNo">
+          <view class="redemption-card glass-surface">
+            <view class="redemption-card-top">
+              <view>
+                <view class="redemption-card-title">{{item.productName}}</view>
+                <view class="redemption-card-order">订单号 {{item.orderNo}}</view>
+              </view>
+              <view class="redemption-status {{item.statusClass}}">{{item.statusText}}</view>
+            </view>
+
+            <view class="redemption-card-meta">
+              <view class="redemption-meta-item">
+                <view class="redemption-meta-label">兑换时间</view>
+                <view class="redemption-meta-value">{{item.createdAt}}</view>
+              </view>
+              <view class="redemption-meta-item">
+                <view class="redemption-meta-label">消耗积分</view>
+                <view class="redemption-meta-value">{{item.pointsCost}} 积分</view>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+
+      <view wx:else class="redemption-empty glass-surface shell-card">
+        <view class="redemption-empty-orb">
+          <image class="redemption-empty-orb-image" src="/assets/icons/bag.svg" mode="aspectFit"></image>
+        </view>
+        <view class="redemption-empty-title">还没有兑换记录</view>
+        <view class="redemption-empty-desc">去商城兑换一个奖励吧，完成后这里会自动出现新的订单。</view>
+        <button class="redemption-empty-button" bindtap="goMall">去商城看看</button>
+      </view>
+    </view>
+  </scroll-view>
+</view>
