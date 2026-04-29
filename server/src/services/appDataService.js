@@ -19,6 +19,22 @@ const BEHAVIOR_CATALOG = [
   { code: 'paperless_note', name: '无纸笔记', points: 8, carbonKg: 0.2 }
 ];
 
+const CARBON_FACTORS = {
+  travel: {
+    car: { factor: 0.21, unit: 'km', name: '驾车' },
+    taxi: { factor: 0.18, unit: 'km', name: '打车' },
+    bus: { factor: 0.08, unit: 'km', name: '公交' },
+    subway: { factor: 0.04, unit: 'km', name: '地铁' },
+    bicycle: { factor: 0, unit: 'km', name: '骑行' },
+    walk: { factor: 0, unit: 'km', name: '步行' },
+    electric_scooter: { factor: 0.02, unit: 'km', name: '电动自行车' }
+  },
+  electricity: {
+    residential: { factor: 0.58, unit: 'kWh', name: '居民用电' },
+    commercial: { factor: 0.72, unit: 'kWh', name: '商业用电' }
+  }
+};
+
 const DEFAULT_PRODUCTS = [
   {
     name: '种子纸手账',
@@ -604,6 +620,146 @@ async function getWeeklyOverview(authUser) {
   };
 }
 
+async function submitCarbonData(payload = {}, authUser) {
+  if (!(await isDbAvailable())) {
+    return {
+      id: 1,
+      dataType: payload.dataType,
+      category: payload.category,
+      value: payload.value,
+      unit: payload.unit,
+      carbonKg: payload.carbonKg,
+      recordDate: payload.recordDate,
+      createdAt: nowText()
+    };
+  }
+
+  const { dataType, category, value, recordDate } = payload;
+
+  if (!dataType || !category || !value || !recordDate) {
+    throw createError('dataType, category, value, recordDate 必填');
+  }
+
+  const typeFactors = CARBON_FACTORS[dataType];
+  if (!typeFactors) {
+    throw createError('不支持的数据类型，仅支持 travel 和 electricity');
+  }
+
+  const categoryInfo = typeFactors[category];
+  if (!categoryInfo) {
+    throw createError(`不支持的 ${dataType} 类别`);
+  }
+
+  const carbonKg = Number((value * categoryInfo.factor).toFixed(2));
+  const unit = categoryInfo.unit;
+
+  const connection = await pool.getConnection();
+
+  try {
+    await connection.beginTransaction();
+
+    const userId = await resolveCurrentUserId(authUser, connection);
+
+    const [insertResult] = await connection.query(
+      `
+        INSERT INTO carbon_data_entries (
+          user_id, data_type, category, value, unit, carbon_kg, record_date
+        )
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+      `,
+      [userId, dataType, category, value, unit, carbonKg, recordDate]
+    );
+
+    await connection.commit();
+
+    return {
+      id: insertResult.insertId,
+      dataType,
+      category,
+      value,
+      unit,
+      carbonKg,
+      recordDate,
+      createdAt: nowText()
+    };
+  } catch (error) {
+    await connection.rollback();
+    throw error;
+  } finally {
+    connection.release();
+  }
+}
+
+async function getCarbonDataEntries(authUser, options = {}) {
+  if (!(await isDbAvailable())) {
+    return [];
+  }
+
+  const { dataType, startDate, endDate, limit = 50 } = options;
+  const userId = await resolveCurrentUserId(authUser);
+
+  let query = 'SELECT * FROM carbon_data_entries WHERE user_id = ?';
+  const params = [userId];
+
+  if (dataType) {
+    query += ' AND data_type = ?';
+    params.push(dataType);
+  }
+
+  if (startDate) {
+    query += ' AND record_date >= ?';
+    params.push(startDate);
+  }
+
+  if (endDate) {
+    query += ' AND record_date <= ?';
+    params.push(endDate);
+  }
+
+  query += ' ORDER BY record_date DESC, created_at DESC LIMIT ?';
+  params.push(limit);
+
+  const [rows] = await pool.query(query, params);
+
+  return rows.map((row) => ({
+    id: Number(row.id),
+    dataType: row.data_type,
+    category: row.category,
+    value: Number(row.value),
+    unit: row.unit,
+    carbonKg: Number(row.carbon_kg),
+    recordDate: row.record_date.toISOString().split('T')[0],
+    createdAt: formatDateTime(row.created_at)
+  }));
+}
+
+async function getCarbonSummary(authUser) {
+  if (!(await isDbAvailable())) {
+    return { totalCarbonKg: 0, travelCarbonKg: 0, electricityCarbonKg: 0 };
+  }
+
+  const userId = await resolveCurrentUserId(authUser);
+
+  const [[travelRow]] = await pool.query(
+    'SELECT COALESCE(SUM(carbon_kg), 0) as total FROM carbon_data_entries WHERE user_id = ? AND data_type = ?',
+    [userId, 'travel']
+  );
+
+  const [[electricityRow]] = await pool.query(
+    'SELECT COALESCE(SUM(carbon_kg), 0) as total FROM carbon_data_entries WHERE user_id = ? AND data_type = ?',
+    [userId, 'electricity']
+  );
+
+  const travelCarbonKg = Number(travelRow.total);
+  const electricityCarbonKg = Number(electricityRow.total);
+
+  return {
+    totalCarbonKg: Number((travelCarbonKg + electricityCarbonKg).toFixed(2)),
+    travelCarbonKg,
+    electricityCarbonKg
+  };
+}
+
 module.exports = {
   getCurrentUser,
   getPointAccount,
@@ -616,5 +772,9 @@ module.exports = {
   isDbAvailable,
   ensureDemoData,
   resolveCurrentUserId,
-  mapUserRow
+  mapUserRow,
+  submitCarbonData,
+  getCarbonDataEntries,
+  getCarbonSummary,
+  CARBON_FACTORS
 };

@@ -34,6 +34,205 @@
     <view class="shell-content">
       <view class="log-hero">
         <view class="log-hero-title">告诉小碳你今天的减碳行为</view>
+        <view class="log-hero-subtitle">例如："今天在食堂使用了自带餐具"</view>
+
+        <view class="assistant-orb-wrap log-orb">
+          <view class="assistant-orb-glow"></view>
+          <view class="assistant-orb">
+            <image class="assistant-orb-image" src="/assets/icons/robot.svg" mode="aspectFit"></image>
+          </view>
+          <view class="assistant-orb-badge">小碳 AI</view>
+        </view>
+
+        <view class="voice-record-wrap">
+          <view class="voice-ring"></view>
+          <button class="voice-record-button" bindtap="openVoiceRecord">
+            <image class="voice-record-icon" src="/assets/icons/mic.svg" mode="aspectFit"></image>
+          </button>
+        </view>
+
+        <view class="capsule-pill">
+          <view class="pill-icon">
+            <image class="pill-icon-image" src="/assets/icons/verified.svg" mode="aspectFit"></image>
+          </view>
+          <view>隐私声明：语音仅在本地处理，不上传云端</view>
+        </view>
+      </view>
+
+      <view class="tab-switch">
+        <view class="tab-item {{activeTab === 'behavior' ? 'tab-active' : ''}}" data-tab="behavior" bindtap="switchTab">行为打卡</view>
+        <view class="tab-item {{activeTab === 'carbon' ? 'tab-active' : ''}}" data-tab="carbon" bindtap="switchTab">碳足迹录入</view>
+      </view>
+
+      <block wx:if="{{activeTab === 'behavior'}}">
+        <view class="glass-surface shell-card text-entry-card" bindtap="openTextQa">
+          <view class="text-entry-icon">
+            <image class="text-entry-icon-image" src="/assets/icons/robot.svg" mode="aspectFit"></image>
+          </view>
+          <view class="text-entry-main">
+            <view class="text-entry-title">小碳问答</view>
+            <view class="text-entry-desc">AI 助手陪你聊减碳心得</view>
+          </view>
+        </view>
+
+        <view class="mini-section-head">
+          <view class="mini-section-title">快捷记录</view>
+          <view class="mini-section-link">推荐行为</view>
+        </view>
+
+        <view class="behavior-grid">
+          <block wx:for="{{behaviorTypes}}" wx:key="code">
+            <view class="behavior-card" data-name="{{item.name}}" data-code="{{item.code}}" bindtap="selectBehavior">
+              <view class="behavior-card-top">
+                <view class="behavior-icon">
+                  <image class="behavior-icon-image" src="{{item.icon}}" mode="aspectFit"></image>
+                </view>
+                <view class="behavior-carbon">{{item.carbon}}</view>
+              </view>
+              <view class="behavior-name">{{item.name}}</view>
+              <view class="behavior-desc">{{item.desc}}</view>
+            </view>
+          </block>
+        </view>
+      </block>
+
+      <block wx:if="{{activeTab === 'carbon'}}">
+        <view class="carbon-entry-intro">
+          <view class="carbon-entry-title">录入出行和用电数据</view>
+          <view class="carbon-entry-desc">系统将根据碳排放因子计算您的碳足迹</view>
+        </view>
+
+        <view class="carbon-entry-button-wrap">
+          <button class="carbon-entry-button" bindtap="openCarbonEntry">
+            <text class="carbon-entry-icon">+</text>
+            <text>新增录入</text>
+          </button>
+        </view>
+
+        <view class="carbon-tips">
+          <view class="carbon-tips-title">碳排放因子参考</view>
+          <view class="carbon-tips-grid">
+            <view class="carbon-tip-item">
+              <text class="carbon-tip-label">驾车</text>
+              <text class="carbon-tip-value">0.21 kg/km</text>
+            </view>
+            <view class="carbon-tip-item">
+              <text class="carbon-tip-label">公交</text>
+              <text class="carbon-tip-value">0.08 kg/km</text>
+            </view>
+            <view class="carbon-tip-item">
+              <text class="carbon-tip-label">地铁</text>
+              <text class="carbon-tip-value">0.04 kg/km</text>
+            </view>
+            <view class="carbon-tip-item">
+              <text class="carbon-tip-label">居民用电</text>
+              <text class="carbon-tip-value">0.58 kg/kWh</text>
+            </view>
+          </view>
+        </view>
+      </block>
+
+      <view class="log-footer">
+        <view>© 2026 碳迹同行 Initiative</view>
+        <view class="log-footer-links">
+          <text>隐私政策</text>
+          <text>服务协议</text>
+          <text>关于我们</text>
+        </view>
+      </view>
+    </view>
+  </scroll-view>
+
+  <view wx:if="{{showCarbonEntry}}" class="carbon-entry-modal">
+    <view class="carbon-entry-modal-mask" bindtap="closeCarbonEntry"></view>
+    <view class="carbon-entry-modal-content">
+      <view class="carbon-entry-modal-header">
+        <view class="carbon-entry-modal-title">录入碳足迹数据</view>
+        <view class="carbon-entry-modal-close" bindtap="closeCarbonEntry">×</view>
+      </view>
+
+      <view class="carbon-entry-form">
+        <view class="form-section">
+          <view class="form-label">数据类型</view>
+          <view class="form-type-buttons">
+            <view class="form-type-button {{entryForm.dataType === 'travel' ? 'form-type-active' : ''}}" data-type="travel" bindtap="onDataTypeChange">出行</view>
+            <view class="form-type-button {{entryForm.dataType === 'electricity' ? 'form-type-active' : ''}}" data-type="electricity" bindtap="onDataTypeChange">用电</view>
+          </view>
+        </view>
+
+        <view class="form-section">
+          <view class="form-label">具体类别</view>
+          <picker range="{{carbonFactors[entryForm.dataType]}}" range-key="name" value="{{carbonFactors[entryForm.dataType].findIndex(function(item) {return item.code === entryForm.category;})}}" bindchange="onCategoryChange">
+            <view class="form-picker">
+              {{carbonFactors[entryForm.dataType][carbonFactors[entryForm.dataType].findIndex(function(item) {return item.code === entryForm.category;})] || carbonFactors[entryForm.dataType][0].name}}
+            </view>
+          </picker>
+        </view>
+
+        <view class="form-section">
+          <view class="form-label">数值 ({{carbonFactors[entryForm.dataType][carbonFactors[entryForm.dataType].findIndex(function(item) {return item.code === entryForm.category;})] || carbonFactors[entryForm.dataType][0].unit}})</view>
+          <input class="form-input" type="digit" placeholder="请输入数值" value="{{entryForm.value}}" bindinput="onValueInput" />
+        </view>
+
+        <view class="form-section">
+          <view class="form-label">记录日期</view>
+          <picker mode="date" value="{{entryForm.recordDate}}" bindchange="onDateChange">
+            <view class="form-picker">
+              {{entryForm.recordDate || '请选择日期'}}
+            </view>
+          </picker>
+        </view>
+
+        <view class="form-result">
+          <view class="form-result-label">预估碳排放</view>
+          <view class="form-result-value">{{calculateCarbon()}} kg CO₂</view>
+        </view>
+
+        <button class="form-submit" bindtap="submitCarbonData" disabled="{{submitting}}">{{submitting ? '提交中...' : '提交'}}</button>
+      </view>
+    </view>
+  </view>
+
+  <button class="shell-fab" bindtap="openTextQa">
+    <image class="shell-fab-image" src="/assets/icons/robot.svg" mode="aspectFit"></image>
+  </button>
+
+  <view class="shell-bottom-nav">
+    <block wx:for="{{tabs}}" wx:key="key">
+      <view class="shell-nav-item {{item.key === 'log' ? 'shell-nav-item-active' : ''}}" data-path="{{item.path}}" bindtap="goToPage">
+        <image class="shell-nav-icon" src="{{item.icon}}" mode="aspectFit"></image>
+        <view class="shell-nav-label">{{item.label}}</view>
+      </view>
+    </block>
+  </view>
+</view>
+      <view class="shell-brand-title">碳迹同行</view>
+    </view>
+  </view>
+
+  <view wx:if="{{rewardToast.visible}}" class="reward-toast-layer" catchtap="hideRewardToast">
+    <view class="reward-toast-card">
+      <view class="reward-toast-glow"></view>
+      <view class="reward-toast-main">
+        <view class="reward-toast-title">{{rewardToast.title}}</view>
+        <view class="reward-toast-metrics">
+          <view class="reward-metric-chip reward-metric-points">
+            <text class="reward-metric-label">积分</text>
+            <text class="reward-metric-value">+{{rewardToast.points}}</text>
+          </view>
+          <view class="reward-metric-chip reward-metric-carbon">
+            <text class="reward-metric-label">减碳</text>
+            <text class="reward-metric-value">{{rewardToast.carbonText}}</text>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <scroll-view scroll-y class="shell-scroll">
+    <view class="shell-content">
+      <view class="log-hero">
+        <view class="log-hero-title">告诉小碳你今天的减碳行为</view>
         <view class="log-hero-subtitle">例如：“今天在食堂使用了自带餐具”</view>
 
         <view class="assistant-orb-wrap log-orb">
