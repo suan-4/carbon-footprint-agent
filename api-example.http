@@ -1,0 +1,10 @@
+POST http://localhost:8080/api/emissions/calculate
+Content-Type: application/json
+
+{
+  "activities": [
+    { "category": "transport", "activityType": "driving", "amount": 10 },
+    { "category": "energy", "activityType": "electricity", "amount": 15 },
+    { "category": "diet", "activityType": "meat", "amount": 2 }
+  ]
+}
