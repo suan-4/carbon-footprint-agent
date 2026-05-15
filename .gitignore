@@ -6,4 +6,5 @@ Thumbs.db
 server/.env
 miniapp/node_modules/
 server/node_modules/
+.python_packages/
 

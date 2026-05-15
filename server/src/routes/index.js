@@ -7,6 +7,7 @@ const productRoutes = require('./products');
 const reportRoutes = require('./reports');
 const agentRoutes = require('./agent');
 const plazaRoutes = require('./plaza');
+const carbonDataRoutes = require('./carbonData');
 
 const router = express.Router();
 
@@ -18,5 +19,6 @@ router.use('/products', productRoutes);
 router.use('/reports', reportRoutes);
 router.use('/agent', agentRoutes);
 router.use('/plaza', plazaRoutes);
+router.use('/carbon-data', carbonDataRoutes);
 
 module.exports = router;

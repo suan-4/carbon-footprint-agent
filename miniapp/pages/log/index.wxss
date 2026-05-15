@@ -301,3 +301,249 @@
     transform: translateY(0) scale(1);
   }
 }
+
+.tab-switch {
+  display: flex;
+  margin: 24rpx 32rpx;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 16rpx;
+  padding: 6rpx;
+}
+
+.tab-item {
+  flex: 1;
+  text-align: center;
+  padding: 18rpx 0;
+  font-size: 26rpx;
+  color: #6d7a73;
+  border-radius: 12rpx;
+  transition: all 0.3s;
+}
+
+.tab-active {
+  background: linear-gradient(135deg, #1ba95b, #44d47f);
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.carbon-entry-intro {
+  padding: 24rpx 32rpx;
+  text-align: center;
+}
+
+.carbon-entry-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #122733;
+}
+
+.carbon-entry-desc {
+  margin-top: 12rpx;
+  font-size: 24rpx;
+  color: #6d7a73;
+}
+
+.carbon-entry-button-wrap {
+  padding: 0 32rpx;
+  margin-bottom: 32rpx;
+}
+
+.carbon-entry-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12rpx;
+  padding: 28rpx 0;
+  background: linear-gradient(135deg, #1ba95b, #44d47f);
+  color: #ffffff;
+  font-size: 28rpx;
+  font-weight: 700;
+  border-radius: 20rpx;
+  box-shadow: 0 16rpx 32rpx rgba(46, 204, 113, 0.24);
+}
+
+.carbon-entry-icon {
+  font-size: 36rpx;
+  font-weight: bold;
+}
+
+.carbon-tips {
+  margin: 0 32rpx 32rpx;
+  padding: 24rpx;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 20rpx;
+}
+
+.carbon-tips-title {
+  font-size: 24rpx;
+  font-weight: 700;
+  color: #122733;
+  margin-bottom: 16rpx;
+}
+
+.carbon-tips-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12rpx;
+}
+
+.carbon-tip-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 12rpx 16rpx;
+  background: rgba(46, 204, 113, 0.08);
+  border-radius: 10rpx;
+}
+
+.carbon-tip-label {
+  font-size: 22rpx;
+  color: #6d7a73;
+}
+
+.carbon-tip-value {
+  font-size: 22rpx;
+  font-weight: 700;
+  color: #1ba95b;
+}
+
+.carbon-entry-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.carbon-entry-modal-mask {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.carbon-entry-modal-content {
+  position: relative;
+  width: 100%;
+  max-height: 85vh;
+  background: #ffffff;
+  border-radius: 32rpx 32rpx 0 0;
+  padding: 32rpx;
+  box-sizing: border-box;
+  overflow-y: auto;
+}
+
+.carbon-entry-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32rpx;
+}
+
+.carbon-entry-modal-title {
+  font-size: 34rpx;
+  font-weight: 800;
+  color: #122733;
+}
+
+.carbon-entry-modal-close {
+  font-size: 48rpx;
+  color: #97a39a;
+  line-height: 1;
+}
+
+.carbon-entry-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28rpx;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12rpx;
+}
+
+.form-label {
+  font-size: 26rpx;
+  font-weight: 700;
+  color: #122733;
+}
+
+.form-type-buttons {
+  display: flex;
+  gap: 16rpx;
+}
+
+.form-type-button {
+  flex: 1;
+  padding: 20rpx 0;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #6d7a73;
+  transition: all 0.3s;
+}
+
+.form-type-active {
+  background: linear-gradient(135deg, #1ba95b, #44d47f);
+  border-color: transparent;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.form-picker {
+  padding: 20rpx 24rpx;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #122733;
+}
+
+.form-input {
+  padding: 20rpx 24rpx;
+  background: rgba(255, 255, 255, 0.7);
+  border: 2rpx solid #e0e0e0;
+  border-radius: 12rpx;
+  font-size: 26rpx;
+  color: #122733;
+}
+
+.form-result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24rpx;
+  background: rgba(46, 204, 113, 0.1);
+  border-radius: 12rpx;
+  margin-top: 12rpx;
+}
+
+.form-result-label {
+  font-size: 26rpx;
+  color: #6d7a73;
+}
+
+.form-result-value {
+  font-size: 32rpx;
+  font-weight: 800;
+  color: #1ba95b;
+}
+
+.form-submit {
+  margin-top: 16rpx;
+  padding: 24rpx 0;
+  background: linear-gradient(135deg, #1ba95b, #44d47f);
+  color: #ffffff;
+  font-size: 30rpx;
+  font-weight: 700;
+  border-radius: 16rpx;
+  box-shadow: 0 16rpx 32rpx rgba(46, 204, 113, 0.24);
+}
+
+.form-submit[disabled] {
+  background: #ccc;
+  box-shadow: none;
+}

@@ -3,6 +3,29 @@ const { request } = require('../../utils/request');
 Page({
   data: {
     submitting: false,
+    activeTab: 'behavior',
+    showCarbonEntry: false,
+    entryForm: {
+      dataType: 'travel',
+      category: 'car',
+      value: '',
+      recordDate: ''
+    },
+    carbonFactors: {
+      travel: [
+        { code: 'car', name: '驾车', unit: 'km', factor: 0.21 },
+        { code: 'taxi', name: '打车', unit: 'km', factor: 0.18 },
+        { code: 'bus', name: '公交', unit: 'km', factor: 0.08 },
+        { code: 'subway', name: '地铁', unit: 'km', factor: 0.04 },
+        { code: 'bicycle', name: '骑行', unit: 'km', factor: 0 },
+        { code: 'walk', name: '步行', unit: 'km', factor: 0 },
+        { code: 'electric_scooter', name: '电动自行车', unit: 'km', factor: 0.02 }
+      ],
+      electricity: [
+        { code: 'residential', name: '居民用电', unit: 'kWh', factor: 0.58 },
+        { code: 'commercial', name: '商业用电', unit: 'kWh', factor: 0.72 }
+      ]
+    },
     rewardToast: {
       visible: false,
       title: '',
@@ -129,6 +152,121 @@ Page({
         pointsAwarded: result.record.pointsAwarded,
         carbonKg: result.record.carbonKg
       });
+    } catch (error) {
+      wx.showToast({
+        title: '提交失败，请稍后再试',
+        icon: 'none'
+      });
+      console.error(error);
+    } finally {
+      this.setData({ submitting: false });
+    }
+  },
+
+  switchTab(event) {
+    const tab = event.currentTarget.dataset.tab;
+    this.setData({ activeTab: tab });
+  },
+
+  openCarbonEntry() {
+    const today = new Date();
+    const dateStr = today.toISOString().split('T')[0];
+    this.setData({
+      showCarbonEntry: true,
+      entryForm: {
+        dataType: 'travel',
+        category: 'car',
+        value: '',
+        recordDate: dateStr
+      }
+    });
+  },
+
+  closeCarbonEntry() {
+    this.setData({ showCarbonEntry: false });
+  },
+
+  onDataTypeChange(event) {
+    const dataType = event.currentTarget.dataset.type;
+    const defaultCategory = dataType === 'travel' ? 'car' : 'residential';
+    this.setData({
+      'entryForm.dataType': dataType,
+      'entryForm.category': defaultCategory
+    });
+  },
+
+  onCategoryChange(event) {
+    const category = event.detail.value;
+    this.setData({
+      'entryForm.category': category
+    });
+  },
+
+  onValueInput(event) {
+    this.setData({
+      'entryForm.value': event.detail.value
+    });
+  },
+
+  onDateChange(event) {
+    this.setData({
+      'entryForm.recordDate': event.detail.value
+    });
+  },
+
+  calculateCarbon() {
+    const { dataType, category, value } = this.data.entryForm;
+    if (!value || isNaN(value) || value <= 0) return 0;
+    
+    const typeFactors = this.data.carbonFactors[dataType];
+    if (!typeFactors) return 0;
+    
+    const selectedCategory = typeFactors.find(c => c.code === category);
+    if (!selectedCategory) return 0;
+    
+    return (value * selectedCategory.factor).toFixed(2);
+  },
+
+  async submitCarbonData() {
+    const { dataType, category, value, recordDate } = this.data.entryForm;
+    
+    if (!value || isNaN(value) || value <= 0) {
+      wx.showToast({
+        title: '请输入有效的数值',
+        icon: 'none'
+      });
+      return;
+    }
+
+    if (!recordDate) {
+      wx.showToast({
+        title: '请选择日期',
+        icon: 'none'
+      });
+      return;
+    }
+
+    this.setData({ submitting: true });
+
+    try {
+      await request({
+        url: '/carbon-data',
+        method: 'POST',
+        data: {
+          dataType,
+          category,
+          value: parseFloat(value),
+          recordDate
+        }
+      });
+
+      const carbonKg = this.calculateCarbon();
+      wx.showToast({
+        title: '录入成功',
+        icon: 'success'
+      });
+
+      this.setData({ showCarbonEntry: false });
     } catch (error) {
       wx.showToast({
         title: '提交失败，请稍后再试',

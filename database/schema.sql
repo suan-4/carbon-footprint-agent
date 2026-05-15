@@ -144,3 +144,19 @@ CREATE TABLE IF NOT EXISTS plaza_claims (
   CONSTRAINT fk_plaza_claims_user_id FOREIGN KEY (user_id) REFERENCES users(id),
   CONSTRAINT fk_plaza_claims_post_id FOREIGN KEY (post_id) REFERENCES plaza_posts(id)
 ) COMMENT='plaza claims';
+
+CREATE TABLE IF NOT EXISTS carbon_data_entries (
+  id BIGINT UNSIGNED PRIMARY KEY AUTO_INCREMENT COMMENT 'primary key',
+  user_id BIGINT UNSIGNED NOT NULL COMMENT 'user id',
+  data_type VARCHAR(32) NOT NULL COMMENT 'travel electricity',
+  category VARCHAR(64) NOT NULL COMMENT 'specific category like car bus subway electricity',
+  value DECIMAL(10,2) NOT NULL COMMENT 'input value like km kwh',
+  unit VARCHAR(16) NOT NULL COMMENT 'unit like km kwh',
+  carbon_kg DECIMAL(10,2) NOT NULL DEFAULT 0.00 COMMENT 'calculated carbon kg',
+  record_date DATE NOT NULL COMMENT 'record date',
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  INDEX idx_carbon_data_entries_user_created (user_id, created_at),
+  INDEX idx_carbon_data_entries_user_date (user_id, record_date),
+  CONSTRAINT fk_carbon_data_entries_user_id FOREIGN KEY (user_id) REFERENCES users(id)
+) COMMENT='carbon data entries for travel and electricity';
