@@ -10,6 +10,11 @@ Page({
       completion: 80,
       trend: 12
     },
+    carbonSummary: {
+      totalCarbonKg: 0,
+      travelCarbonKg: 0,
+      electricityCarbonKg: 0
+    },
     quickActions: [
       {
         icon: '/assets/icons/recycle.svg',
@@ -66,10 +71,11 @@ Page({
   async loadHomeData() {
     this.setData({ loading: true });
     try {
-      const [user, pointAccount, weeklyReport] = await Promise.all([
+      const [user, pointAccount, weeklyReport, carbonSummary] = await Promise.all([
         request({ url: '/users/me' }),
         request({ url: '/users/me/points' }),
-        request({ url: '/reports/weekly-overview' })
+        request({ url: '/reports/weekly-overview' }),
+        request({ url: '/carbon-data/summary' }).catch(() => ({ totalCarbonKg: 0, travelCarbonKg: 0, electricityCarbonKg: 0 }))
       ]);
 
       const trend = weeklyReport && weeklyReport.trend ? weeklyReport.trend : [];
@@ -78,14 +84,22 @@ Page({
       const trendPercent = previous ? Math.round(((latest - previous) / previous) * 100) : 0;
       const completion = Math.min(100, Math.max(0, Math.round(((weeklyReport.pointsEarned || 0) / 160) * 100)));
       const weeklyCarbonKg = Number(weeklyReport.carbonKg || 0);
+      const totalCarbonFromData = carbonSummary && carbonSummary.totalCarbonKg ? Number(carbonSummary.totalCarbonKg) : 0;
+      const behaviorCarbon = user.totalCarbonKg || 0;
+      const combinedCarbonKg = Number((behaviorCarbon + totalCarbonFromData).toFixed(2));
 
       this.setData({
         overview: {
           points: pointAccount.balance || user.totalPoints || 0,
-          carbonKg: user.totalCarbonKg || 0,
+          carbonKg: combinedCarbonKg,
           streak: 7,
           completion,
           trend: trendPercent
+        },
+        carbonSummary: {
+          totalCarbonKg: totalCarbonFromData,
+          travelCarbonKg: carbonSummary.travelCarbonKg || 0,
+          electricityCarbonKg: carbonSummary.electricityCarbonKg || 0
         },
         achievements: [
           {

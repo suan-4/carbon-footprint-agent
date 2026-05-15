@@ -71,6 +71,40 @@
         </block>
       </view>
 
+      <view class="carbon-summary-section">
+        <view class="section-head">
+          <view class="section-title">碳排放总量</view>
+          <view class="section-link" data-path="/pages/log/index" bindtap="goToPage">录入数据</view>
+        </view>
+        <view class="carbon-summary-card">
+          <view class="carbon-total">
+            <view class="carbon-total-value">{{overview.carbonKg}}</view>
+            <view class="carbon-total-unit">kg CO₂</view>
+            <view class="carbon-total-label">碳足迹总量</view>
+          </view>
+          <view class="carbon-breakdown">
+            <view class="carbon-breakdown-item">
+              <view class="breakdown-icon travel-icon">
+                <image class="breakdown-icon-image" src="/assets/icons/car.svg" mode="aspectFit"></image>
+              </view>
+              <view class="breakdown-info">
+                <view class="breakdown-label">出行碳排放</view>
+                <view class="breakdown-value">{{carbonSummary.travelCarbonKg}} kg</view>
+              </view>
+            </view>
+            <view class="carbon-breakdown-item">
+              <view class="breakdown-icon electric-icon">
+                <image class="breakdown-icon-image" src="/assets/icons/bolt.svg" mode="aspectFit"></image>
+              </view>
+              <view class="breakdown-info">
+                <view class="breakdown-label">用电碳排放</view>
+                <view class="breakdown-value">{{carbonSummary.electricityCarbonKg}} kg</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </view>
+
       <view class="section-head">
         <view class="section-title">近期成就</view>
         <view class="section-link">查看全部</view>
