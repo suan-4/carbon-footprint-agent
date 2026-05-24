@@ -3,9 +3,7 @@ package com.example.entity;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-/**
- * 碳排放数据记录实体
- */
+
 public class CarbonEmissionRecord {
     private Long id;
     private Long userId;

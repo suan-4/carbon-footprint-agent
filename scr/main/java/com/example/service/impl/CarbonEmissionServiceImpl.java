@@ -9,9 +9,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * 碳排放数据录入服务实现
- */
+
 public class CarbonEmissionServiceImpl implements CarbonEmissionService {
 
     private final Map<Long, CarbonEmissionRecord> recordStorage = new HashMap<>();
